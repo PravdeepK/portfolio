@@ -11,6 +11,7 @@ import {
   StreamFigure,
   TimetableFigure,
   VerificationFigure,
+  WorkflowFigure,
 } from "./figures";
 
 type Project = {
@@ -36,11 +37,10 @@ type Project = {
 const projects: Project[] = [
   {
     number: "01",
-    title: "Tera canvas panel",
+    title: "Tera",
     category: "Mentera",
-    ticket: "MS-161",
     description:
-      "Tera answered everything as a wall of chat text. I built a side panel that catches its output and renders it as it streams in over the WebSocket: markdown, code, raw HTML, SVG, Mermaid and React.",
+      "Mentera is an AI platform for private practices and medspas. Tera is the assistant inside it, and staff lean on it in the middle of a working day. I build the parts they touch, most recently the panel where everything Tera produces gets rendered properly instead of buried in a chat thread.",
     detail:
       "Half an SVG is not valid SVG. The panel buffers by block type and hands a block over once its closing delimiter arrives. The buffering code is ugly. The flickering stopped.",
     noteLabel: "What was hard",
@@ -52,47 +52,40 @@ const projects: Project[] = [
   },
   {
     number: "02",
-    title: "96 on mobile",
-    category: "Mentera",
+    title: "Making sites fast and findable",
+    category: "Mentera and Rosehill",
     description:
-      "The marketing site was slow on phones and the hero video was most of the reason. I compressed it, moved around thirty images to next/image, self-hosted the fonts, deferred Google Tag Manager, and switched Framer Motion to LazyMotion.",
+      "Two of the sites I've worked on had the same two problems: they were slow on a phone, and search engines weren't reading them properly. A heavy hero video was the biggest culprit on both. I worked through the media, the fonts, and the scripts sitting in front of the first paint, then the metadata and page structure underneath.",
     detail:
-      "2.3 second LCP on throttled 4G, no layout shift. Measured 4 August 2026 on Lighthouse 13.",
+      "Mentera runs 96 on mobile and 100 on desktop, with a 2.3 second first paint on a throttled 4G connection. Rosehill runs 90 and 100, with a perfect SEO score. Neither site shifts as it loads.",
     noteLabel: "Result",
     figure: (
       <ScoreBars
-        title="Mentera marketing site: 96 on mobile against a target of 65, 100 on desktop against a target of 75."
+        title="PageSpeed scores: Mentera 96 on mobile and 100 on desktop, Rosehill 90 on mobile and 100 on desktop."
         rows={[
-          { label: "Mobile", value: 96, target: 65 },
-          { label: "Desktop", value: 100, target: 75 },
+          { label: "Mentera, mobile", value: 96 },
+          { label: "Mentera, desktop", value: 100 },
+          { label: "Rosehill, mobile", value: 90 },
+          { label: "Rosehill, desktop", value: 100 },
         ]}
       />
     ),
-    caption: "Fig. 02 · PageSpeed against target",
-    meta: ["Next.js", "next/image", "LazyMotion", "Vercel"],
-    href: "https://mentera.ai",
-    linkLabel: "See the site",
+    caption: "Fig. 02 · PageSpeed, both sites",
+    meta: ["Core Web Vitals", "SEO", "Next.js", "Vercel"],
   },
   {
     number: "03",
     title: "Rosehill Design Build",
     category: "Client work",
     description:
-      "Rosehill is a design build contractor in the GTA. Their old site was a template carrying a hero video far too large for mobile data, so the first thing a client saw on their phone was a white screen. I rebuilt it in Next.js, pointed the GoDaddy DNS at Vercel, and wrote proper OG tags so their link previews stopped looking broken. Most of the win came from the video, which is still the largest paint on mobile at 3.2 seconds.",
+      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt the site, moved it onto their own domain, and fixed the previews so sharing a link stopped looking broken. Most of the win came from the video, which is still the slowest thing on the page.",
     detail:
       "The owner had no interest in learning a CMS, so feedback ran through a Notion board and I made the edits myself. That was faster for both of us, and it means the site still comes back to me when a phone number changes.",
     noteLabel: "Trade-off",
     figure: (
-      <ScoreBars
-        title="Rosehill: 90 on mobile, 100 on desktop, 100 for SEO."
-        rows={[
-          { label: "Mobile", value: 90 },
-          { label: "Desktop", value: 100 },
-          { label: "SEO", value: 100 },
-        ]}
-      />
+      <WorkflowFigure />
     ),
-    caption: "Fig. 03 · Lighthouse, 4 August 2026",
+    caption: "Fig. 03 · How an edit reaches the site",
     meta: ["Next.js", "Vercel", "GoDaddy DNS", "Notion"],
     href: "https://www.rosehilldesignbuild.com/",
     linkLabel: "Open live site",
@@ -102,7 +95,7 @@ const projects: Project[] = [
     title: "Rebelsnow",
     category: "E-commerce platform",
     description:
-      "A year on the storefront, remote, from January 2024 to January 2025. I built the product and promotional landing pages, then the reusable pieces underneath them: checkout, payments, and catalog management.",
+      "Rebelsnow sells clothing online. I spent a year on the storefront, remote, building the pages customers land on and the parts they buy through: the catalog, the cart, checkout and payment.",
     detail:
       "Checkout got the most test coverage. It's the one flow where a bug costs the store money instead of just looking wrong.",
     noteLabel: "How it was tested",
@@ -124,7 +117,7 @@ const projects: Project[] = [
     title: "FakeWordle",
     category: "Personal project",
     description:
-      "fakewordle.com is Wordle, except you play it against someone else. Firebase handles accounts and history, a small WebSocket server on Railway runs the live match, and Claude generates the word lists.",
+      "fakewordle.com is Wordle, except you play it against someone else. You open a room, send someone the code, and race them in real time with a chat running alongside. Accounts and past games are saved, and Claude writes the word lists.",
     detail:
       "Firestore was the wrong tool for the match loop. Every keystroke that mattered was a write and you could feel the lag. I moved the in-match state onto the socket server and only wrote the final result to Firestore, which fixed it.",
     noteLabel: "What went wrong",
@@ -147,7 +140,7 @@ const projects: Project[] = [
     title: "Schedule to calendar",
     category: "Personal project",
     description:
-      "I got tired of typing my class timetable into a calendar every semester. This reads a screenshot with Claude's vision API and hands back an ICS file.",
+      "Every semester I typed my class timetable into a calendar by hand. Now I upload a screenshot of the timetable and get back a calendar file that imports straight into Google Calendar or Outlook.",
     detail:
       "The model was the easy part. Timetables are grids where the position of a cell carries the meaning, so the parsing had to keep where something sat as well as what it said.",
     noteLabel: "What was hard",
@@ -164,9 +157,9 @@ const projects: Project[] = [
     title: "Health risk classifier",
     category: "Capstone, AIGC 5005",
     description:
-      "My capstone. It classifies health risk and compares logistic regression against a multilayer perceptron, with a FastAPI backend and a Next.js frontend.",
+      "One of my two capstones. It takes health data and predicts risk, and the point of the project was putting a plain statistical model up against a small neural network on the same data to see what the extra complexity actually bought.",
     detail:
-      "I did the data prep and the evaluation, then built the frontend, because a confusion matrix in a notebook is not a demo anyone outside the program can read.",
+      "Logistic regression against a multilayer perceptron, with a FastAPI backend and a Next.js frontend. I did the data prep and the evaluation, then built the frontend, because a confusion matrix in a notebook is not a demo anyone outside the program can read.",
     noteLabel: "My part",
     figure: <ModelsFigure />,
     caption: "Fig. 07 · Same inputs, two models",
@@ -176,11 +169,11 @@ const projects: Project[] = [
   {
     number: "08",
     title: "HuntigoX",
-    category: "Capstone, trust and safety",
+    category: "Capstone, AIGC 5505",
     description:
-      "A job board that checks the employer before a candidate applies. It cross-checks business registration and document data against the listing, scores the posting for anomalies, and handles the Canadian compliance side, including LMIA reference checks and PIPEDA-conscious data handling.",
+      "Fake job postings are a real problem for people applying for work in Canada. HuntigoX checks the employer behind a listing before anyone applies: it confirms the business is real and registered, then scores the posting against the patterns that show up in scams. The compliance side is built around Canadian hiring rules.",
     detail:
-      "I built the candidate and employer interfaces, including the verification flow and the scorecard evaluators see. On the ML side I worked on the anomaly detection and the legitimacy scoring behind those results.",
+      "I built the candidate and employer interfaces, including the verification flow and the scorecard evaluators see. On the ML side I worked on the anomaly detection and the legitimacy scoring behind those results, including the LMIA reference checks.",
     noteLabel: "My part",
     figure: <VerificationFigure />,
     caption: "Fig. 08 · Verification output, illustrative",
@@ -548,22 +541,22 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.06} className="about__copy">
               <p>
-                I&apos;m a software developer at Mentera, an AI platform for
-                private practices and medspas. I work on the frontend, mostly on
-                the parts people touch directly. Most recently that&apos;s the
-                canvas panel: the assistant streams its output over a WebSocket
-                and the panel renders whatever comes back.
+                I&apos;m a developer at Mentera, an AI platform for private
+                practices and medspas. My current project is the canvas panel
+                for Tera, our assistant, which renders whatever the model
+                streams back over a WebSocket. Before that I spent a year at
+                Rebelsnow building client sites.
               </p>
               <p>
-                Before Mentera I spent a year at Rebelsnow and built client
-                sites. The Humber certificate has been useful mostly for knowing
-                what a model can&apos;t do, which saves a lot of time when
-                someone asks for it anyway.
+                I&apos;m finishing a graduate certificate in AI and machine
+                learning at Humber, which has mostly been useful for knowing
+                what a model can and can&apos;t be asked to do.
               </p>
               <p>
                 Outside of work I build things I want to use myself. A
-                multiplayer Wordle clone. A tool that reads a screenshot of my
-                class timetable and hands back a calendar file. Making the
+                multiplayer Wordle clone with real-time rooms, auth, and a
+                socket server I deployed myself. A tool that reads a screenshot
+                of my class timetable and hands back a calendar file. Making the
                 interface not feel slow is usually the interesting part.
               </p>
             </Reveal>
@@ -668,11 +661,12 @@ export default function Home() {
                         </span>
                       ))}
                     </span>
-                    {project.href ? (
+                    {project.href && (
                       <span className="record__cta" aria-hidden="true">
                         {project.linkLabel} <Arrow />
                       </span>
-                    ) : (
+                    )}
+                    {!project.href && project.status && (
                       <span className="record__status">{project.status}</span>
                     )}
                     {project.secondaryHref && (

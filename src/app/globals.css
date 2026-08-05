@@ -636,6 +636,14 @@ a:hover .arrow,
   font-size: 8px;
 }
 
+.fig-stat {
+  fill: var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
 .fig-value {
   fill: var(--ink);
   font-family: var(--font-mono), monospace;

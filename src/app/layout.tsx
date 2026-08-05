@@ -17,7 +17,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pravdeepkullar.dev"),
+  metadataBase: new URL("https://builtbyprav.com"),
   title: "Pravdeep Kullar | Full-stack Developer",
   description:
     "Full-stack developer in Ontario, Canada. I build applications end to end in React, Next.js and Node. Currently at Mentera, an AI platform for private practices and medspas.",

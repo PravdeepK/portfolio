@@ -40,8 +40,8 @@ export function ScoreBars({
   rows: { label: string; value: number; target?: number }[];
   title: string;
 }) {
-  const x0 = 62;
-  const width = 214;
+  const x0 = 108;
+  const width = 160;
   const rowH = 34;
   const top = 26;
 
@@ -112,6 +112,75 @@ export function ScoreBars({
   );
 }
 
+/** How an edit actually reaches the site when the client has no CMS. */
+export function WorkflowFigure() {
+  const nodes = ["Owner", "Notion", "Me", "Deploy"];
+  return (
+    <Plate title="Feedback goes from the owner to a Notion board, I make the edit and deploy it. There is no CMS in the loop.">
+      {nodes.map((node, i) => {
+        const x = i * 84;
+        const mine = node === "Me";
+        return (
+          <g key={node}>
+            <rect
+              x={x}
+              y="34"
+              width="68"
+              height="30"
+              fill="none"
+              stroke={mine ? ACCENT : V}
+              strokeWidth={mine ? "1.5" : "1"}
+            />
+            <text
+              className="fig-label"
+              x={x + 34}
+              y="53"
+              textAnchor="middle"
+              style={{ fill: mine ? ACCENT : V }}
+            >
+              {node}
+            </text>
+            {i < nodes.length - 1 && (
+              <>
+                <path
+                  d={`M${x + 68} 49 H${x + 80}`}
+                  stroke={SOFT}
+                  strokeWidth="1"
+                />
+                <path
+                  d={`M${x + 76} 45 l5 4 -5 4`}
+                  fill="none"
+                  stroke={SOFT}
+                  strokeWidth="1"
+                />
+              </>
+            )}
+          </g>
+        );
+      })}
+
+      {/* The step that was deliberately left out. */}
+      <rect
+        x="84"
+        y="98"
+        width="152"
+        height="30"
+        fill="none"
+        stroke={SOFT}
+        strokeWidth="1"
+        strokeDasharray="3 3"
+      />
+      <path d="M94 107 l12 12 M106 107 l-12 12" stroke={BAD} strokeWidth="1.2" />
+      <text className="fig-label" x="116" y="117">
+        a cms for the owner
+      </text>
+      <text className="fig-label" x="160" y="144" textAnchor="middle" style={{ fill: BAD }}>
+        never built
+      </text>
+    </Plate>
+  );
+}
+
 /** Partial blocks are held in the buffer until their closing delimiter lands. */
 export function StreamFigure() {
   return (
@@ -122,7 +191,7 @@ export function StreamFigure() {
       <text className="fig-label" x="108" y="10">
         buffer
       </text>
-      <text className="fig-label" x="232" y="10">
+      <text className="fig-label" x="248" y="10">
         panel
       </text>
 
@@ -191,41 +260,41 @@ export function StreamFigure() {
 
 /** Storefront chain, with the tested flow marked. */
 export function CommerceFigure() {
-  const nodes = ["Catalog", "Product", "Cart", "Checkout"];
+  const nodes = ["Catalog", "Product", "Cart", "Checkout", "Payment"];
   return (
-    <Plate title="Catalog through checkout, reading from REST APIs, with checkout under test.">
+    <Plate title="Catalog through to payment, reading from REST APIs, with checkout under the heaviest test coverage.">
       {nodes.map((node, i) => {
-        const x = i * 80;
-        const isLast = i === nodes.length - 1;
+        const x = i * 66;
+        const tested = node === "Checkout";
         return (
           <g key={node}>
             <rect
               x={x}
               y="34"
-              width="66"
+              width="56"
               height="30"
               fill="none"
-              stroke={isLast ? ACCENT : V}
-              strokeWidth={isLast ? "1.5" : "1"}
+              stroke={tested ? ACCENT : V}
+              strokeWidth={tested ? "1.5" : "1"}
             />
             <text
               className="fig-label"
-              x={x + 33}
+              x={x + 28}
               y="53"
               textAnchor="middle"
-              style={{ fill: isLast ? ACCENT : V }}
+              style={{ fill: tested ? ACCENT : V }}
             >
               {node}
             </text>
             {i < nodes.length - 1 && (
               <path
-                d={`M${x + 66} 49 H${x + 78}`}
+                d={`M${x + 56} 49 H${x + 64}`}
                 stroke={SOFT}
                 strokeWidth="1"
               />
             )}
             <path
-              d={`M${x + 33} 64 V96`}
+              d={`M${x + 28} 64 V96`}
               stroke={SOFT}
               strokeWidth="1"
               strokeDasharray="2 3"
@@ -234,15 +303,15 @@ export function CommerceFigure() {
         );
       })}
 
-      <rect x="0" y="96" width="306" height="24" fill="var(--paper-3)" />
+      <rect x="0" y="96" width="320" height="24" fill="var(--paper-3)" />
       <text className="fig-label" x="8" y="111">
         rest api · products · auth · orders
       </text>
 
-      <text className="fig-label" x="240" y="20" style={{ fill: ACCENT }}>
+      <text className="fig-label" x="184" y="20" style={{ fill: ACCENT }}>
         jest + rtl
       </text>
-      <path d="M262 24 V32" stroke={ACCENT} strokeWidth="1" />
+      <path d="M226 24 V32" stroke={ACCENT} strokeWidth="1" />
     </Plate>
   );
 }
@@ -310,14 +379,27 @@ export function TimetableFigure() {
       <text className="fig-label" x="0" y="10">
         screenshot
       </text>
+      {["mon", "tue", "wed", "thu", "fri"].map((day, c) => (
+        <text
+          key={day}
+          className="fig-label"
+          x={c * 28 + 13}
+          y="22"
+          textAnchor="middle"
+          style={{ fill: c === 2 ? ACCENT : undefined }}
+        >
+          {day}
+        </text>
+      ))}
       {rows.map((r) =>
         cols.map((c) => {
-          const hit = r === 2 && c === 3;
+          // Wednesday, third slot: the cell the event below is read from.
+          const hit = r === 2 && c === 2;
           return (
             <rect
               key={`${r}-${c}`}
               x={c * 28}
-              y={20 + r * 26}
+              y={28 + r * 26}
               width="26"
               height="24"
               fill={hit ? ACCENT : "none"}
@@ -328,9 +410,9 @@ export function TimetableFigure() {
         })
       )}
 
-      <path d="M148 84 H190" stroke={V} strokeWidth="1" />
-      <path d="M186 80 l5 4 -5 4" fill="none" stroke={V} strokeWidth="1" />
-      <text className="fig-label" x="169" y="76" textAnchor="middle">
+      <path d="M148 92 H190" stroke={V} strokeWidth="1" />
+      <path d="M186 88 l5 4 -5 4" fill="none" stroke={V} strokeWidth="1" />
+      <text className="fig-label" x="169" y="84" textAnchor="middle">
         position
       </text>
 
