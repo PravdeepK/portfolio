@@ -40,10 +40,10 @@ const projects: Project[] = [
     title: "Tera",
     category: "Mentera",
     description:
-      "Mentera is an AI platform for private practices and medspas. Tera is the assistant inside it, and staff lean on it in the middle of a working day. I build the parts they touch, most recently the panel where everything Tera produces gets rendered properly instead of buried in a chat thread.",
+      "Mentera is an AI platform for private practices and medspas. Tera is the assistant inside it, and staff lean on it in the middle of a working day. I build the parts they touch, most recently the panel where everything Tera produces gets rendered as it streams in, instead of arriving as a wall of chat text.",
     detail:
-      "Half an SVG is not valid SVG. The panel buffers by block type and hands a block over once its closing delimiter arrives. The buffering code is ugly. The flickering stopped.",
-    noteLabel: "What was hard",
+      "Content arrives in pieces, and drawing a piece before it's finished makes the panel flicker. Each block now waits until it's whole before any of it renders. The code that does the waiting is ugly. The flickering stopped.",
+    noteLabel: "The hard part",
     figure: <StreamFigure />,
     caption: "Fig. 01 · Buffer, then render",
     meta: ["React", "Next.js", "TypeScript", "WebSocket", "Vercel"],
@@ -55,10 +55,10 @@ const projects: Project[] = [
     title: "Making sites fast and findable",
     category: "Mentera and Rosehill",
     description:
-      "Two of the sites I've worked on had the same two problems: they were slow on a phone, and search engines weren't reading them properly. A heavy hero video was the biggest culprit on both. I worked through the media, the fonts, and the scripts sitting in front of the first paint, then the metadata and page structure underneath.",
+      "Two of the sites I've worked on had the same two problems: they were slow on a phone, and search engines weren't reading them properly. A heavy hero video was the biggest culprit on both. I worked through the video and the images, the fonts, and the scripts sitting in front of the first thing you see, then the metadata and page structure that search engines read.",
     detail:
-      "Mentera runs 96 on mobile and 100 on desktop, with a 2.3 second first paint on a throttled 4G connection. Rosehill runs 90 and 100, with a perfect SEO score. Neither site shifts as it loads.",
-    noteLabel: "Result",
+      "Mentera scores 96 on a phone and 100 on desktop. Rosehill scores 90 and 100, with a perfect score for search. On a slow connection the main content lands in about two seconds, and neither page jumps around while it loads.",
+    noteLabel: "Where it landed",
     figure: (
       <ScoreBars
         title="PageSpeed scores: Mentera 96 on mobile and 100 on desktop, Rosehill 90 on mobile and 100 on desktop."
@@ -78,9 +78,9 @@ const projects: Project[] = [
     title: "Rosehill Design Build",
     category: "Client work",
     description:
-      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt the site, moved it onto their own domain, and fixed the previews so sharing a link stopped looking broken. Most of the win came from the video, which is still the slowest thing on the page.",
+      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt the site, pointed their domain at the new one, and fixed the previews so sharing a link stopped looking broken. Most of the win came from the video, which is still the slowest thing on the page.",
     detail:
-      "The owner had no interest in learning a CMS, so feedback ran through a Notion board and I made the edits myself. That was faster for both of us, and it means the site still comes back to me when a phone number changes.",
+      "The owner had no interest in learning a CMS, so changes came to me through a Notion board and I made them myself. That was faster for both of us, and it means a new phone number still has to come through me.",
     noteLabel: "Trade-off",
     figure: (
       <WorkflowFigure />
@@ -97,8 +97,8 @@ const projects: Project[] = [
     description:
       "Rebelsnow sells clothing online. I spent a year on the storefront, remote, building the pages customers land on and the parts they buy through: the catalog, the cart, checkout and payment.",
     detail:
-      "Checkout got the most test coverage. It's the one flow where a bug costs the store money instead of just looking wrong.",
-    noteLabel: "How it was tested",
+      "Checkout got the most testing, because it's the one place where a bug costs the store a sale instead of just looking wrong.",
+    noteLabel: "Where the risk was",
     figure: <CommerceFigure />,
     caption: "Fig. 04 · Storefront chain",
     meta: [
@@ -119,7 +119,7 @@ const projects: Project[] = [
     description:
       "fakewordle.com is Wordle, except you play it against someone else. You open a room, send someone the code, and race them in real time with a chat running alongside. Accounts and past games are saved, and Claude writes the word lists.",
     detail:
-      "Firestore was the wrong tool for the match loop. Every keystroke that mattered was a write and you could feel the lag. I moved the in-match state onto the socket server and only wrote the final result to Firestore, which fixed it.",
+      "I ran the live game straight off the database to begin with, which meant a write for every letter a player typed, and you could feel the delay. Moving the match onto its own live server fixed it, and the database only stores the result now.",
     noteLabel: "What went wrong",
     figure: <SocketFigure />,
     caption: "Fig. 05 · Where the state lives",
@@ -142,8 +142,8 @@ const projects: Project[] = [
     description:
       "Every semester I typed my class timetable into a calendar by hand. Now I upload a screenshot of the timetable and get back a calendar file that imports straight into Google Calendar or Outlook.",
     detail:
-      "The model was the easy part. Timetables are grids where the position of a cell carries the meaning, so the parsing had to keep where something sat as well as what it said.",
-    noteLabel: "What was hard",
+      "The model was the easy part. A timetable is a grid where position carries the meaning: where a class sits tells you when it is, so parsing the text alone throws away half the information.",
+    noteLabel: "The hard part",
     figure: <TimetableFigure />,
     caption: "Fig. 06 · Cell to event",
     meta: ["Next.js", "Claude vision API", "ICS"],
@@ -159,7 +159,7 @@ const projects: Project[] = [
     description:
       "One of my two capstones. It takes health data and predicts risk, and the point of the project was putting a plain statistical model up against a small neural network on the same data to see what the extra complexity actually bought.",
     detail:
-      "Logistic regression against a multilayer perceptron, with a FastAPI backend and a Next.js frontend. I did the data prep and the evaluation, then built the frontend, because a confusion matrix in a notebook is not a demo anyone outside the program can read.",
+      "I prepared the data and ran the comparison between the two models, then built the interface for it, because a page of numbers in a notebook is not something you can put in front of anyone outside the program.",
     noteLabel: "My part",
     figure: <ModelsFigure />,
     caption: "Fig. 07 · Same inputs, two models",
@@ -173,7 +173,7 @@ const projects: Project[] = [
     description:
       "Fake job postings are a real problem for people applying for work in Canada. HuntigoX checks the employer behind a listing before anyone applies: it confirms the business is real and registered, then scores the posting against the patterns that show up in scams. The compliance side is built around Canadian hiring rules.",
     detail:
-      "I built the candidate and employer interfaces, including the verification flow and the scorecard evaluators see. On the ML side I worked on the anomaly detection and the legitimacy scoring behind those results, including the LMIA reference checks.",
+      "I built what candidates and employers actually see, including the verification steps and the scorecard at the end of them. On the model side I worked on spotting the patterns that mark a listing as suspect.",
     noteLabel: "My part",
     figure: <VerificationFigure />,
     caption: "Fig. 08 · Verification output, illustrative",
