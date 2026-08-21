@@ -5,7 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import {
   CommerceFigure,
+  EnrollFigure,
   ModelsFigure,
+  QuoteFigure,
   ScoreBars,
   SocketFigure,
   StreamFigure,
@@ -92,6 +94,36 @@ const projects: Project[] = [
   },
   {
     number: "04",
+    title: "CH Logistics",
+    category: "Client work",
+    description:
+      "CH Logistics is a freight carrier in Burlington that runs loads across every Canadian province and territory and the 48 contiguous states. Quoting happened on the phone, so the site had to do the two things a phone call was doing: explain the six services, from full truckload down to temperature-controlled, and take a quote request with enough on it to price a load. The form asks for origin, destination, and service type, because that's the minimum dispatch needs before they can answer.",
+    detail:
+      "A quote request arrives as an email and nothing marks it as answered. The 24 hour reply the confirmation screen promises holds because someone is watching that inbox, not because the site enforces it. At their volume that's cheaper than a CRM, and it's the first thing I'd replace if the volume changes.",
+    noteLabel: "Trade-off",
+    figure: <QuoteFigure />,
+    caption: "Fig. 04 · Where a quote goes",
+    meta: ["Next.js", "TypeScript", "Route handlers", "Vercel"],
+    href: "https://www.chlogistics.ca/",
+    linkLabel: "Open live site",
+  },
+  {
+    number: "05",
+    title: "Rising Sun Montessori School",
+    category: "Client work",
+    description:
+      "Rising Sun is a WASC accredited Montessori school in El Dorado Hills, California, teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation is built on the four programs instead of on the school: each grade band has its own page, and the campus and gallery pages are there because parents want to see a classroom before they agree to visit one.",
+    detail:
+      "Enrollment doesn't happen on the site. Applications hand off to Transparent Classroom, which the school already runs, and a tour is booked by emailing the office, because tours are Wednesday mornings only and one person keeps that calendar. Two of the three things a parent came to do finish somewhere I don't control. Building either one on the site would have meant keeping a second copy of records the school already has.",
+    noteLabel: "Trade-off",
+    figure: <EnrollFigure />,
+    caption: "Fig. 05 · What a parent came to do",
+    meta: ["WordPress", "Elementor", "Transparent Classroom"],
+    href: "https://risingsunmontessori.org/",
+    linkLabel: "Open live site",
+  },
+  {
+    number: "06",
     title: "Rebelsnow",
     category: "E-commerce platform",
     description:
@@ -100,7 +132,7 @@ const projects: Project[] = [
       "Checkout got the most testing, because it's the one place where a bug costs the store a sale instead of just looking wrong.",
     noteLabel: "Where the risk was",
     figure: <CommerceFigure />,
-    caption: "Fig. 04 · Storefront chain",
+    caption: "Fig. 06 · Storefront chain",
     meta: [
       "React",
       "Next.js",
@@ -113,7 +145,7 @@ const projects: Project[] = [
     linkLabel: "Visit the store",
   },
   {
-    number: "05",
+    number: "07",
     title: "FakeWordle",
     category: "Personal project",
     description:
@@ -122,7 +154,7 @@ const projects: Project[] = [
       "I ran the live game straight off the database to begin with, which meant a write for every letter a player typed, and you could feel the delay. Moving the match onto its own live server fixed it, and the database only stores the result now.",
     noteLabel: "What went wrong",
     figure: <SocketFigure />,
-    caption: "Fig. 05 · Where the state lives",
+    caption: "Fig. 07 · Where the state lives",
     meta: [
       "Next.js 15",
       "Firebase Auth",
@@ -136,7 +168,7 @@ const projects: Project[] = [
     secondaryLabel: "Source",
   },
   {
-    number: "06",
+    number: "08",
     title: "Schedule to calendar",
     category: "Personal project",
     description:
@@ -145,7 +177,7 @@ const projects: Project[] = [
       "The model was the easy part. A timetable is a grid where position carries the meaning: where a class sits tells you when it is, so parsing the text alone throws away half the information.",
     noteLabel: "The hard part",
     figure: <TimetableFigure />,
-    caption: "Fig. 06 · Cell to event",
+    caption: "Fig. 08 · Cell to event",
     meta: ["Next.js", "Claude vision API", "ICS"],
     href: "https://schedule-to-calendar-two.vercel.app",
     linkLabel: "Try the tool",
@@ -153,7 +185,7 @@ const projects: Project[] = [
     secondaryLabel: "Source",
   },
   {
-    number: "07",
+    number: "09",
     title: "Health risk classifier",
     category: "Capstone, AIGC 5005",
     description:
@@ -162,12 +194,12 @@ const projects: Project[] = [
       "I prepared the data and ran the comparison between the two models, then built the interface for it, because a page of numbers in a notebook is not something you can put in front of anyone outside the program.",
     noteLabel: "My part",
     figure: <ModelsFigure />,
-    caption: "Fig. 07 · Same inputs, two models",
+    caption: "Fig. 09 · Same inputs, two models",
     meta: ["Python", "PyTorch", "scikit-learn", "FastAPI", "Next.js"],
     status: "Not public yet",
   },
   {
-    number: "08",
+    number: "10",
     title: "HuntigoX",
     category: "Capstone, AIGC 5505",
     description:
@@ -176,7 +208,7 @@ const projects: Project[] = [
       "I built what candidates and employers actually see, including the verification steps and the scorecard at the end of them. On the model side I worked on spotting the patterns that mark a listing as suspect.",
     noteLabel: "My part",
     figure: <VerificationFigure />,
-    caption: "Fig. 08 · Verification output, illustrative",
+    caption: "Fig. 10 · Verification output, illustrative",
     meta: ["React", "Next.js", "TypeScript", "Python", "REST APIs"],
     status: "Not public yet",
   },
@@ -567,7 +599,7 @@ export default function Home() {
           <Rail
             index="02"
             label="Selected work"
-            note="Eight projects. Some were paid, the rest I built because I wanted the thing to exist."
+            note="Ten projects. Some were paid, the rest I built because I wanted the thing to exist."
           />
           <div className="records">
             {projects.map((project) => (

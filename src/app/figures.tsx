@@ -552,3 +552,199 @@ export function ModelsFigure() {
     </Plate>
   );
 }
+
+/** A quote request goes form, route, inbox. Nothing tracks it after that. */
+export function QuoteFigure() {
+  const steps = [
+    { label: "quote form", y: 10 },
+    { label: "api route · vercel", y: 58 },
+    { label: "info@ inbox", y: 106 },
+  ];
+
+  return (
+    <Plate title="A quote request goes from the form to an API route on Vercel and lands in the office inbox. No CRM tracks it after that.">
+      {steps.map((step, i) => {
+        const last = i === steps.length - 1;
+        return (
+          <g key={step.label}>
+            <rect
+              x="0"
+              y={step.y}
+              width="132"
+              height="30"
+              fill="none"
+              stroke={last ? ACCENT : V}
+              strokeWidth={last ? "1.5" : "1"}
+            />
+            <text
+              className="fig-label"
+              x="66"
+              y={step.y + 19}
+              textAnchor="middle"
+              style={{ fill: last ? ACCENT : V }}
+            >
+              {step.label}
+            </text>
+            {!last && (
+              <>
+                <path
+                  d={`M66 ${step.y + 30} V${step.y + 48}`}
+                  stroke={SOFT}
+                  strokeWidth="1"
+                />
+                <path
+                  d={`M62 ${step.y + 44} l4 4 4 -4`}
+                  fill="none"
+                  stroke={SOFT}
+                  strokeWidth="1"
+                />
+              </>
+            )}
+          </g>
+        );
+      })}
+
+      <text className="fig-label" x="144" y="125" style={{ fill: ACCENT }}>
+        answered by hand
+      </text>
+
+      {/* The step nobody is paying for yet. */}
+      <rect
+        x="176"
+        y="44"
+        width="136"
+        height="30"
+        fill="none"
+        stroke={SOFT}
+        strokeWidth="1"
+        strokeDasharray="3 3"
+      />
+      <path d="M186 53 l12 12 M198 53 l-12 12" stroke={BAD} strokeWidth="1.2" />
+      <text className="fig-label" x="206" y="63">
+        crm · quote status
+      </text>
+      <text
+        className="fig-label"
+        x="244"
+        y="90"
+        textAnchor="middle"
+        style={{ fill: BAD }}
+      >
+        not built
+      </text>
+    </Plate>
+  );
+}
+
+/** Three things a parent comes to do. Two of them leave the site. */
+export function EnrollFigure() {
+  const branches = [
+    { label: "gallery", x: 0 },
+    { label: "apply", x: 114 },
+    { label: "book a tour", x: 228 },
+  ];
+
+  return (
+    <Plate title="From a program page a parent reaches the gallery, the application, or a tour. The application hands off to Transparent Classroom and the tour is booked by email, so both leave the site.">
+      <rect x="94" y="8" width="132" height="28" fill="none" stroke={V} />
+      <text className="fig-label" x="160" y="26" textAnchor="middle">
+        program page
+      </text>
+
+      <path d="M160 36 V52 M46 52 H274" stroke={SOFT} strokeWidth="1" />
+
+      {branches.map((branch) => {
+        const cx = branch.x + 46;
+        return (
+          <g key={branch.label}>
+            <path d={`M${cx} 52 V66`} stroke={SOFT} strokeWidth="1" />
+            <rect
+              x={branch.x}
+              y="66"
+              width="92"
+              height="28"
+              fill="none"
+              stroke={V}
+            />
+            <text className="fig-label" x={cx} y="84" textAnchor="middle">
+              {branch.label}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* Everything under this line is somebody else's system. */}
+      <path
+        d="M0 104 H320"
+        stroke={SOFT}
+        strokeWidth="1"
+        strokeDasharray="3 3"
+      />
+      <text className="fig-label" x="0" y="101">
+        off the site
+      </text>
+
+      <text className="fig-label" x="46" y="127" textAnchor="middle">
+        stays here
+      </text>
+
+      <path d="M160 94 V112 M274 94 V112" stroke={ACCENT} strokeWidth="1" />
+
+      <rect
+        x="112"
+        y="112"
+        width="96"
+        height="32"
+        fill="none"
+        stroke={ACCENT}
+        strokeWidth="1.5"
+      />
+      <text
+        className="fig-label"
+        x="160"
+        y="126"
+        textAnchor="middle"
+        style={{ fill: ACCENT }}
+      >
+        transparent
+      </text>
+      <text
+        className="fig-label"
+        x="160"
+        y="137"
+        textAnchor="middle"
+        style={{ fill: ACCENT }}
+      >
+        classroom
+      </text>
+
+      <rect
+        x="226"
+        y="112"
+        width="94"
+        height="32"
+        fill="none"
+        stroke={ACCENT}
+        strokeWidth="1.5"
+      />
+      <text
+        className="fig-label"
+        x="273"
+        y="126"
+        textAnchor="middle"
+        style={{ fill: ACCENT }}
+      >
+        email
+      </text>
+      <text
+        className="fig-label"
+        x="273"
+        y="137"
+        textAnchor="middle"
+        style={{ fill: ACCENT }}
+      >
+        wed morning
+      </text>
+    </Plate>
+  );
+}
