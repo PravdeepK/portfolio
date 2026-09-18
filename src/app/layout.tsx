@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { projects } from "./projects";
 
 const serif = Source_Serif_4({
   variable: "--font-serif",
@@ -16,7 +17,7 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const SITE = "https://builtbyprav.com";
+const SITE = "https://www.builtbyprav.com";
 const TITLE = "Pravdeep Kullar | Full-stack Developer";
 const DESCRIPTION =
   "Full-stack developer in Ontario, Canada, serving the Toronto area. I build applications end to end in React, Next.js and Node. Currently at Mentera, an AI platform for private practices and medspas.";
@@ -131,10 +132,41 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE}/#website`,
       url: SITE,
-      name: TITLE,
+      name: "Pravdeep Kullar",
+      alternateName: TITLE,
       description: DESCRIPTION,
       inLanguage: "en-CA",
       publisher: { "@id": `${SITE}/#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE}/#page`,
+      url: SITE,
+      name: TITLE,
+      description: DESCRIPTION,
+      inLanguage: "en-CA",
+      isPartOf: { "@id": `${SITE}/#website` },
+      about: { "@id": `${SITE}/#person` },
+      mainEntity: { "@id": `${SITE}/#person` },
+      primaryImageOfPage: `${SITE}/og.png`,
+      hasPart: {
+        "@type": "ItemList",
+        name: "Selected work",
+        numberOfItems: projects.length,
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "CreativeWork",
+            name: project.title,
+            description: project.description,
+            about: project.category,
+            keywords: project.meta.join(", "),
+            author: { "@id": `${SITE}/#person` },
+            ...(project.href ? { url: project.href } : {}),
+          },
+        })),
+      },
     },
   ],
 };

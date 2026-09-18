@@ -1,0 +1,31 @@
+# Pravdeep Kullar
+
+> Full-stack developer based in Ontario, Canada. Builds applications end to end in React, Next.js, and Node. Currently a software developer at Mentera, an AI platform for private practices and medspas. Completed a graduate certificate in AI and machine learning at Humber Polytechnic (2026).
+
+## Background
+- Software Developer at Mentera (2026 to present)
+- Software Developer at Rebelsnow (2024 to 2025)
+- Graduate certificate, AI with Machine Learning, Humber Polytechnic (January to August 2026)
+- Diploma, Computer Programming, Humber Polytechnic
+- Meta Front-End Developer certification
+- Meta UI/UX Design certification
+
+## Core stack
+React, Next.js, TypeScript, Node.js, PostgreSQL, Firebase, FastAPI, Python, PyTorch, scikit-learn, Claude API
+
+## Selected work
+- Tera (Mentera): canvas panel that renders the AI assistant's output as it streams in. https://mentera.ai
+- Making sites fast and findable: performance and SEO work on Mentera and Rosehill. PageSpeed 96/100 and 90/100 (mobile/desktop).
+- Rosehill Design Build: freelance site rebuild for a GTA construction contractor. https://www.rosehilldesignbuild.com/
+- Rising Sun Montessori School: school site with program-based navigation. https://risingsunmontessori.org/
+- Rebelsnow: e-commerce storefront with catalog, cart, checkout, and payment. https://www.rebel-snow.com/
+- FakeWordle: real-time multiplayer Wordle clone. https://www.fakewordle.com
+- Schedule to calendar: turns a timetable screenshot into a calendar file using the Claude vision API. https://schedule-to-calendar-two.vercel.app
+- Health risk classifier: capstone comparing logistic regression against a small neural network. Not public yet.
+- HuntigoX: capstone that checks job postings against fraud patterns. Not public yet.
+
+## Links
+- Site: https://www.builtbyprav.com
+- GitHub: https://github.com/PravdeepK
+- LinkedIn: https://linkedin.com/in/pravdeepk
+- Contact: pravdeepkk@gmail.com
