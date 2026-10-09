@@ -63,7 +63,6 @@ const experience = [
 ];
 
 const alsoList = [
-  "Computer engineering technology. Humber Polytechnic.",
   "Meta Front-End Developer certification.",
   "Meta UI/UX Design certification.",
 ];
