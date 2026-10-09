@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { projects } from "./projects";
+import { skillGroups } from "./skills";
 
 const coursework = [
   {
@@ -30,9 +31,14 @@ const coursework = [
 
 const experience = [
   {
-    years: "2026–now",
-    company: "Mentera",
-    role: "Software Developer",
+    years: "Feb 2026–now",
+    company: "Nx Growth Partners",
+    role: "Forward Deployed Engineer",
+  },
+  {
+    years: "2026",
+    company: "Rosehill Design Build",
+    role: "Freelance Web Developer",
   },
   {
     years: "Jan–Aug 2026",
@@ -40,25 +46,31 @@ const experience = [
     role: "Graduate certificate, artificial intelligence with machine learning",
   },
   {
-    years: "2024–2025",
+    years: "Jul 2024–Dec 2025",
+    company: "Mentera",
+    role: "Full-Stack Developer",
+  },
+  {
+    years: "Jan–Jul 2024",
     company: "Rebelsnow",
-    role: "Software Developer",
+    role: "Web Developer Intern",
+  },
+  {
+    years: "Sept 2023–Aug 2025",
+    company: "Humber Polytechnic",
+    role: "Diploma, computer programming",
   },
 ];
 
 const alsoList = [
-  "Diploma, computer programming. Humber Polytechnic, GPA 3.9.",
   "Computer engineering technology. Humber Polytechnic.",
   "Meta Front-End Developer certification.",
   "Meta UI/UX Design certification.",
 ];
 
 const specs = [
-  { term: "Now", value: "Software developer at Mentera" },
-  {
-    term: "Working on",
-    value: "The canvas panel for Tera, Mentera's assistant",
-  },
+  { term: "Now", value: "Forward deployed engineer at Nx Growth Partners" },
+  { term: "Previously", value: "Full-stack developer at Mentera" },
   { term: "Based in", value: "Ontario, Canada" },
 ];
 
@@ -182,13 +194,14 @@ const SKILLS = [
   "Next.js",
   "TypeScript",
   "Node.js",
-  "PostgreSQL",
-  "Firebase",
-  "FastAPI",
   "Python",
+  "Claude API",
+  "RAG",
+  "AI agents",
+  "FastAPI",
+  "Firebase",
   "PyTorch",
   "scikit-learn",
-  "Claude API",
   "and whatever the problem needs",
 ];
 
@@ -200,7 +213,7 @@ function IntroLine({ onDone }: { onDone: () => void }) {
       sequence={[
         "Hi, I'm Pravdeep,",
         1400,
-        "I'm a full-stack developer.",
+        "I'm a forward deployed engineer and full-stack developer.",
         1400,
         "Welcome to my website!",
         1200,
@@ -307,9 +320,10 @@ export default function Home() {
           </motion.h1>
 
           <motion.p className="masthead__context" {...fade(0.2)}>
-            My day job is at Mentera, an AI platform for private practices and
-            medspas. I recently finished a graduate certificate in AI and
-            machine learning at Humber.
+            Forward Deployed Engineer at Nx Growth Partners. Previously a
+            full-stack developer at Mentera, an AI platform for private
+            practices and medspas. I hold a graduate certificate in AI with machine learning
+            from Humber.
           </motion.p>
 
           <motion.div className="masthead__links" {...fade(0.26)}>
@@ -320,15 +334,15 @@ export default function Home() {
               className="button"
               href="https://github.com/PravdeepK"
               target="_blank"
-              rel="noreferrer"
+              rel="me noreferrer"
             >
               GitHub <Arrow />
             </a>
             <a
               className="button"
-              href="https://linkedin.com/in/pravdeepk"
+              href="https://www.linkedin.com/in/pravdeepk/"
               target="_blank"
-              rel="noreferrer"
+              rel="me noreferrer"
             >
               LinkedIn <Arrow />
             </a>
@@ -363,23 +377,33 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.06} className="about__copy">
               <p>
-                I&apos;m a developer at Mentera, an AI platform for private
-                practices and medspas. My current project is the canvas panel
-                for Tera, our assistant, which renders whatever the model
-                streams back over a WebSocket. Before that I spent a year at
-                Rebelsnow building client sites.
+                I&apos;m a Forward Deployed Engineer and full-stack developer
+                with over 2 years of hands-on experience in React, Next.js,
+                TypeScript and Node.js, plus Python on the ML side. At
+                Nx Growth Partners I work directly with client teams to scope AI
+                and software problems into clear milestones and ship them.
+                Before that I was a full-stack developer at Mentera, an AI
+                platform for private practices and medspas, where I built
+                features for the product, including the Canvas panel for Tera,
+                its assistant, which renders the artifacts Tera streams back.
+                Earlier I interned at Rebelsnow building client
+                e-commerce sites.
               </p>
               <p>
-                I finished a graduate certificate in AI and machine learning
-                at Humber, which was mostly useful for knowing
-                what a model can and can&apos;t be asked to do.
+                I hold a graduate certificate in AI with machine learning from
+                Humber, which was mostly useful for knowing what a model can
+                and can&apos;t be asked to do. I have working Claude API
+                integrations for text and vision, and I use Claude Code and
+                Cursor every day.
               </p>
               <p>
                 Outside of work I build things I want to use myself. A
                 multiplayer Wordle clone with real-time rooms, auth, and a
-                socket server I deployed myself. A tool that reads a screenshot
-                of my class timetable and hands back a calendar file. Making the
-                interface not feel slow is usually the interesting part.
+                socket server I deployed myself. A tool that reads a photo of my
+                class timetable and hands back calendar events. A Raspberry Pi
+                that watches Cineplex for ticket on-sale times. Countdown
+                widgets for the iOS Home Screen. Making the interface not feel
+                slow is usually the interesting part.
               </p>
             </Reveal>
           </div>
@@ -389,7 +413,7 @@ export default function Home() {
           <Rail
             index="02"
             label="Selected work"
-            note="Ten projects. Some were paid, the rest I built because I wanted the thing to exist."
+            note="Twelve projects. Some were paid, the rest I built because I wanted the thing to exist."
           />
           <div className="records">
             {projects.map((project) => (
@@ -508,9 +532,23 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section" aria-labelledby="skills-label">
+          <Rail index="03" label="Skills" id="skills-label" />
+          <div className="course-list">
+            {skillGroups.map((group, index) => (
+              <Reveal key={group.label} delay={index * 0.04}>
+                <div className="course-list__row">
+                  <span className="course-code">{group.label}</span>
+                  <p>{group.items.join(", ")}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
         <section className="section" aria-labelledby="coursework-label">
           <Rail
-            index="03"
+            index="04"
             label="Coursework"
             id="coursework-label"
             note="Humber Polytechnic, January to August 2026. Model work run locally on an M4 MacBook through the MPS backend."
@@ -528,7 +566,7 @@ export default function Home() {
         </section>
 
         <section className="section" aria-labelledby="history-label">
-          <Rail index="04" label="Where I've been" id="history-label" />
+          <Rail index="05" label="Where I've been" id="history-label" />
           <div>
             <div className="ledger">
               {experience.map((item, index) => (
@@ -553,7 +591,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="section contact">
-          <Rail index="05" label="Contact" />
+          <Rail index="06" label="Contact" />
           <div>
             <Reveal>
               <h2>
@@ -583,14 +621,14 @@ export default function Home() {
             <a
               href="https://github.com/PravdeepK"
               target="_blank"
-              rel="noreferrer"
+              rel="me noreferrer"
             >
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/pravdeepk"
+              href="https://www.linkedin.com/in/pravdeepk/"
               target="_blank"
-              rel="noreferrer"
+              rel="me noreferrer"
             >
               LinkedIn
             </a>

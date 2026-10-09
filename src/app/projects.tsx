@@ -6,7 +6,6 @@ import {
   CommerceFigure,
   EnrollFigure,
   ModelsFigure,
-  ScoreBars,
   SocketFigure,
   StreamFigure,
   TimetableFigure,
@@ -37,61 +36,78 @@ export type Project = {
 export const projects: Project[] = [
   {
     number: "01",
+    title: "Forward deployed engineering",
+    category: "Nx Growth Partners",
+    description:
+      "Nx Growth Partners is a custom software and AI development agency. I work directly with client teams to understand the business problem, scope it into a clear first milestone, and coordinate NxGP's senior engineers through build and delivery. The work is AI agents, copilots, RAG and knowledge systems, custom web and mobile apps, and integrations into the stack a client already runs.",
+    meta: ["AI agents", "RAG", "Claude API", "Next.js", "React Native"],
+  },
+  {
+    number: "02",
     title: "Tera",
     category: "Mentera",
     description:
-      "Mentera is an AI platform for private practices and medspas. Tera is the assistant inside it, and staff lean on it in the middle of a working day. I build the parts they touch, most recently the panel where everything Tera produces gets rendered as it streams in, instead of arriving as a wall of chat text.",
+      "Mentera is an AI platform for private practices and medspas. Tera is the assistant inside it, and staff lean on it in the middle of a working day. I built the Canvas side panel, where the artifacts Tera streams back (markdown, code, HTML, SVG, Mermaid and React) render as they arrive instead of as a wall of chat text. HTML and React run in a sandboxed iframe, and the assistant needed backend changes to support it, which I made alongside the backend owner. I also built the config-driven integration detail drawer that covers 35 integrations.",
     detail:
       "Content arrives in pieces, and drawing a piece before it's finished makes the panel flicker. Each block now waits until it's whole before any of it renders. The code that does the waiting is ugly. The flickering stopped.",
     noteLabel: "The hard part",
     figure: <StreamFigure />,
-    caption: "Fig. 01 · Buffer, then render",
-    meta: ["React", "Next.js", "TypeScript", "WebSocket", "Vercel"],
+    caption: "Fig. 02 · Buffer, then render",
+    meta: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "RTK Query",
+      "LaunchDarkly",
+      "WebSocket",
+      "Vercel",
+    ],
     href: "https://mentera.ai",
     linkLabel: "Visit Mentera",
   },
   {
-    number: "02",
+    number: "03",
     title: "Making sites fast and findable",
     category: "Mentera and Rosehill",
     description:
-      "Two of the sites I've worked on had the same two problems: they were slow on a phone, and search engines weren't reading them properly. A heavy hero video was the biggest culprit on both. I worked through the video and the images, the fonts, and the scripts sitting in front of the first thing you see, then the metadata and page structure that search engines read.",
+      "Two of the sites I've worked on had the same problem: a heavy hero video in front of everything else. On the Next.js marketing site for Mentera I compressed the hero video, migrated images to next/image, deferred GTM, switched to next/font/local, and lazy-loaded 21 Framer Motion components. On Rosehill the video was large enough that I compressed it with ffmpeg and added a Cloudflare R2 fallback for delivery.",
     detail:
-      "Mentera scores 96 on a phone and 100 on desktop. Rosehill scores 90 and 100, with a perfect score for search. On a slow connection the main content lands in about two seconds, and neither page jumps around while it loads.",
-    noteLabel: "Where it landed",
-    figure: (
-      <ScoreBars
-        title="PageSpeed scores: Mentera 96 on mobile and 100 on desktop, Rosehill 90 on mobile and 100 on desktop."
-        rows={[
-          { label: "Mentera, mobile", value: 96 },
-          { label: "Mentera, desktop", value: 100 },
-          { label: "Rosehill, mobile", value: 90 },
-          { label: "Rosehill, desktop", value: 100 },
-        ]}
-      />
-    ),
-    caption: "Fig. 02 · PageSpeed, both sites",
-    meta: ["Core Web Vitals", "SEO", "Next.js", "Vercel"],
+      "The Mentera pass targeted 75+ on desktop and 65+ on mobile PageSpeed.",
+    noteLabel: "The target",
+    meta: [
+      "Next.js",
+      "next/image",
+      "next/font",
+      "Framer Motion",
+      "ffmpeg",
+      "Cloudflare R2",
+    ],
   },
   {
-    number: "03",
+    number: "04",
     title: "Rosehill Design Build",
     category: "Client work",
     description:
-      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt the site, pointed their domain at the new one, and fixed the previews so sharing a link stopped looking broken. Most of the win came from the video, which is still the slowest thing on the page.",
+      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt it as a Next.js marketing site on Vercel and handled the domain and DNS setup. The video got ffmpeg compression and a Cloudflare R2 fallback, and it's still the slowest thing on the page. I added OG tags so sharing a link stopped looking broken, plus GTM and cookie consent, and ran the feedback rounds with the client's COO.",
     detail:
       "The owner had no interest in learning a CMS, so changes came to me through a Notion board and I made them myself. That was faster for both of us, and it means a new phone number still has to come through me.",
     noteLabel: "Trade-off",
-    figure: (
-      <WorkflowFigure />
-    ),
-    caption: "Fig. 03 · How an edit reaches the site",
-    meta: ["Next.js", "Vercel", "GoDaddy DNS", "Notion"],
+    figure: <WorkflowFigure />,
+    caption: "Fig. 04 · How an edit reaches the site",
+    meta: [
+      "Next.js",
+      "Vercel",
+      "ffmpeg",
+      "Cloudflare R2",
+      "GTM",
+      "GoDaddy DNS",
+      "Notion",
+    ],
     href: "https://www.rosehilldesignbuild.com/",
     linkLabel: "Open live site",
   },
   {
-    number: "04",
+    number: "05",
     title: "Rising Sun Montessori School",
     category: "Client work",
     description:
@@ -100,22 +116,22 @@ export const projects: Project[] = [
       "Enrollment doesn't happen on the site. Applications hand off to Transparent Classroom, which the school already runs, and a tour is booked by emailing the office, because tours are Wednesday mornings only and one person keeps that calendar. Two of the three things a parent came to do finish somewhere I don't control. Building either one on the site would have meant keeping a second copy of records the school already has.",
     noteLabel: "Trade-off",
     figure: <EnrollFigure />,
-    caption: "Fig. 04 · What a parent came to do",
+    caption: "Fig. 05 · What a parent came to do",
     meta: ["WordPress", "Elementor", "Transparent Classroom"],
     href: "https://risingsunmontessori.org/",
     linkLabel: "Open live site",
   },
   {
-    number: "05",
+    number: "06",
     title: "Rebelsnow",
-    category: "E-commerce platform",
+    category: "Web developer intern",
     description:
-      "Rebelsnow sells clothing online. I spent a year on the storefront, remote, building the pages customers land on and the parts they buy through: the catalog, the cart, checkout and payment.",
+      "I interned at Rebelsnow from January to July 2024, building and shipping client e-commerce websites from the client's requirements through to deployment. That meant the pages customers land on and the parts they buy through: the catalog, the cart, checkout and payment.",
     detail:
       "Checkout got the most testing, because it's the one place where a bug costs the store a sale instead of just looking wrong.",
     noteLabel: "Where the risk was",
     figure: <CommerceFigure />,
-    caption: "Fig. 05 · Storefront chain",
+    caption: "Fig. 06 · Storefront chain",
     meta: [
       "React",
       "Next.js",
@@ -128,22 +144,23 @@ export const projects: Project[] = [
     linkLabel: "Visit the store",
   },
   {
-    number: "06",
+    number: "07",
     title: "FakeWordle",
     category: "Personal project",
     description:
-      "fakewordle.com is Wordle, except you play it against someone else. You open a room, send someone the code, and race them in real time with a chat running alongside. Accounts and past games are saved, and Claude writes the word lists.",
+      "fakewordle.com is Wordle, except you play it against someone else. You open a room, send someone the code, and race them in real time with a chat running alongside. Accounts and past games are saved in Firebase Auth and Firestore, Claude Haiku generates the words, and it connects to Google and Outlook calendars over OAuth.",
     detail:
       "I ran the live game straight off the database to begin with, which meant a write for every letter a player typed, and you could feel the delay. Moving the match onto its own live server fixed it, and the database only stores the result now.",
     noteLabel: "What went wrong",
     figure: <SocketFigure />,
-    caption: "Fig. 06 · Where the state lives",
+    caption: "Fig. 07 · Where the state lives",
     meta: [
       "Next.js 15",
       "Firebase Auth",
       "Firestore",
       "WebSocket on Railway",
-      "Claude API",
+      "Claude Haiku",
+      "OAuth",
     ],
     href: "https://www.fakewordle.com",
     linkLabel: "Play a game",
@@ -151,24 +168,47 @@ export const projects: Project[] = [
     secondaryLabel: "Source",
   },
   {
-    number: "07",
+    number: "08",
     title: "Schedule to calendar",
     category: "Personal project",
     description:
-      "Every semester I typed my class timetable into a calendar by hand. Now I upload a screenshot of the timetable and get back a calendar file that imports straight into Google Calendar or Outlook.",
+      "Every semester I typed my class timetable into a calendar by hand. Now I upload a photo of the timetable, Claude vision parses it, and I get back Google Calendar and Outlook events.",
     detail:
       "The model was the easy part. A timetable is a grid where position carries the meaning: where a class sits tells you when it is, so parsing the text alone throws away half the information.",
     noteLabel: "The hard part",
     figure: <TimetableFigure />,
-    caption: "Fig. 07 · Cell to event",
-    meta: ["Next.js", "Claude vision API", "ICS"],
+    caption: "Fig. 08 · Cell to event",
+    meta: ["Next.js", "Claude vision API", "ICS", "Vercel"],
     href: "https://schedule-to-calendar-two.vercel.app",
     linkLabel: "Try the tool",
     secondaryHref: "https://github.com/PravdeepK/schedule-to-calendar",
     secondaryLabel: "Source",
   },
   {
-    number: "08",
+    number: "09",
+    title: "Cineplex ticket watcher",
+    category: "Personal project",
+    description:
+      "A bot that monitors Cineplex for movie ticket on-sale times and sends a push notification so I can grab tickets quickly. It runs always-on and headless on a Raspberry Pi 4 with Raspberry Pi OS Lite (64-bit), managed over SSH.",
+    meta: ["Raspberry Pi 4", "Raspberry Pi OS Lite", "SSH", "Push notifications"],
+  },
+  {
+    number: "10",
+    title: "Countdown widgets",
+    category: "Personal project, iOS",
+    description:
+      "An iOS app with countdown widgets for the Home Screen. The app is Expo SDK 54, React Native 0.81, React 19, TypeScript and Expo Router. The widgets are SwiftUI with WidgetKit and AppIntents, and a local native Swift module handles the storage the app and widgets share. I build and sideload it through Xcode.",
+    meta: [
+      "Expo SDK 54",
+      "React Native 0.81",
+      "TypeScript",
+      "SwiftUI",
+      "WidgetKit",
+      "Xcode",
+    ],
+  },
+  {
+    number: "11",
     title: "Health risk classifier",
     category: "Capstone, AIGC 5005",
     description:
@@ -177,12 +217,12 @@ export const projects: Project[] = [
       "I prepared the data and ran the comparison between the two models, then built the interface for it, because a page of numbers in a notebook is not something you can put in front of anyone outside the program.",
     noteLabel: "My part",
     figure: <ModelsFigure />,
-    caption: "Fig. 08 · Same inputs, two models",
+    caption: "Fig. 11 · Same inputs, two models",
     meta: ["Python", "PyTorch", "scikit-learn", "FastAPI", "Next.js"],
     status: "Not public yet",
   },
   {
-    number: "09",
+    number: "12",
     title: "HuntigoX",
     category: "Capstone, AIGC 5505",
     description:
@@ -191,7 +231,7 @@ export const projects: Project[] = [
       "I built what candidates and employers actually see, including the verification steps and the scorecard at the end of them. On the model side I worked on spotting the patterns that mark a listing as suspect.",
     noteLabel: "My part",
     figure: <VerificationFigure />,
-    caption: "Fig. 09 · Verification output, illustrative",
+    caption: "Fig. 12 · Verification output, illustrative",
     meta: ["React", "Next.js", "TypeScript", "Python", "REST APIs"],
     status: "Not public yet",
   },

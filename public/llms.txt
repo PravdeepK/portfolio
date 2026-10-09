@@ -1,31 +1,41 @@
 # Pravdeep Kullar
 
-> Full-stack developer based in Ontario, Canada. Builds applications end to end in React, Next.js, and Node. Currently a software developer at Mentera, an AI platform for private practices and medspas. Completed a graduate certificate in AI and machine learning at Humber Polytechnic (2026).
+> Forward Deployed Engineer and full-stack developer based in Ontario, Canada, with over 2 years of hands-on experience in React, Next.js, TypeScript and Node.js, plus Python for ML. Works directly with client teams at Nx Growth Partners to scope AI and software problems into clear milestones and ship them, and was previously a full-stack developer at Mentera, a healthcare AI platform. Holds a graduate certificate in AI with Machine Learning from Humber Polytechnic (2026).
 
-## Background
-- Software Developer at Mentera (2026 to present)
-- Software Developer at Rebelsnow (2024 to 2025)
-- Graduate certificate, AI with Machine Learning, Humber Polytechnic (January to August 2026)
-- Diploma, Computer Programming, Humber Polytechnic
+## Experience
+- Forward Deployed Engineer, Nx Growth Partners (Feb 2026 to present). Custom software and AI development agency: AI agents, copilots, RAG and knowledge systems, custom web and mobile apps, and integrations into clients' existing stacks.
+- Full-Stack Developer, Mentera (Jul 2024 to Dec 2025). Healthcare AI platform for private practices and medspas. Canvas side panel for Tera, the AI chat assistant; config-driven integration drawer covering 35 integrations; Next.js marketing site performance pass.
+- Freelance Web Developer, Rosehill Design Build (2026). Next.js marketing site on Vercel; domain and DNS setup; client feedback rounds with the client's COO.
+- Web Developer Intern, Rebelsnow (Jan 2024 to Jul 2024). Client e-commerce websites.
+
+## Education and certifications
+- Graduate Certificate, Artificial Intelligence with Machine Learning, Humber Polytechnic (Jan 2026 to Aug 2026)
+- Computer Programming Diploma, Humber Polytechnic (Sept 2023 to Aug 2025)
 - Meta Front-End Developer certification
 - Meta UI/UX Design certification
 
-## Core stack
-React, Next.js, TypeScript, Node.js, PostgreSQL, Firebase, FastAPI, Python, PyTorch, scikit-learn, Claude API
+## Skills
+- Front-end: React, Next.js (App Router), TypeScript, JavaScript, Framer Motion, RTK Query, HTML/CSS, React Native (Expo)
+- Back-end and APIs: Node.js, REST, WebSockets, Firebase (Auth, Firestore), FastAPI, Claude API (text and vision), OAuth
+- AI / ML: Python, TensorFlow, Keras, PyTorch, scikit-learn, pandas, NumPy, RAG, AI agents, prompt engineering, logistic regression, MLP classifiers, XGBoost, AWS SageMaker
+- Tools and platforms: Git, Vercel, Railway, LaunchDarkly, Jira, Xcode, Raspberry Pi, Claude Code, Cursor
 
 ## Selected work
-- Tera (Mentera): canvas panel that renders the AI assistant's output as it streams in. https://mentera.ai
-- Making sites fast and findable: performance and SEO work on Mentera and Rosehill. PageSpeed 96/100 and 90/100 (mobile/desktop).
-- Rosehill Design Build: freelance site rebuild for a GTA construction contractor. https://www.rosehilldesignbuild.com/
+- Forward deployed engineering (Nx Growth Partners): scoping client AI and software problems into milestones and coordinating delivery.
+- Tera (Mentera): Canvas side panel rendering streamed artifacts (markdown, code, HTML, SVG, Mermaid, React) with a sandboxed iframe renderer. https://mentera.ai
+- Making sites fast and findable: Mentera marketing site performance pass and Rosehill hero-video delivery (ffmpeg, Cloudflare R2).
+- Rosehill Design Build: freelance Next.js site for a GTA construction contractor. https://www.rosehilldesignbuild.com/
 - Rising Sun Montessori School: school site with program-based navigation. https://risingsunmontessori.org/
-- Rebelsnow: e-commerce storefront with catalog, cart, checkout, and payment. https://www.rebel-snow.com/
-- FakeWordle: real-time multiplayer Wordle clone. https://www.fakewordle.com
-- Schedule to calendar: turns a timetable screenshot into a calendar file using the Claude vision API. https://schedule-to-calendar-two.vercel.app
+- Rebelsnow: client e-commerce websites with catalog, cart, checkout, and payment. https://www.rebel-snow.com/
+- FakeWordle: multiplayer Wordle-style game on Next.js 15, Firebase, a WebSocket server on Railway, and Claude Haiku word generation. https://www.fakewordle.com
+- Schedule to calendar: Claude vision parses photographed timetables into Google Calendar and Outlook events. https://schedule-to-calendar-two.vercel.app
+- Cineplex ticket watcher: always-on Raspberry Pi 4 bot that monitors Cineplex ticket on-sale times and sends push notifications.
+- Countdown widgets: iOS app on Expo SDK 54 and React Native 0.81 with SwiftUI WidgetKit Home Screen widgets.
 - Health risk classifier: capstone comparing logistic regression against a small neural network. Not public yet.
 - HuntigoX: capstone that checks job postings against fraud patterns. Not public yet.
 
 ## Links
 - Site: https://www.builtbyprav.com
 - GitHub: https://github.com/PravdeepK
-- LinkedIn: https://linkedin.com/in/pravdeepk
+- LinkedIn: https://www.linkedin.com/in/pravdeepk/
 - Contact: pravdeepkk@gmail.com
