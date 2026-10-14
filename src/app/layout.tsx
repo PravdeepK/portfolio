@@ -1,22 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Pixelify_Sans, Silkscreen } from "next/font/google";
 import "./globals.css";
 import { projects } from "./projects";
 import { skillGroups } from "./skills";
 
-const serif = Source_Serif_4({
-  variable: "--font-serif",
+const display = Pixelify_Sans({
+  variable: "--font-display",
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+const label = Silkscreen({
+  variable: "--font-label",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
 const mono = IBM_Plex_Mono({
-  variable: "--font-mono",
+  variable: "--font-plex",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
 });
+
+/** Applies a saved Lights on/off choice before first paint, so the page doesn't flash the wrong theme. */
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
 const SITE = "https://www.builtbyprav.com";
 const NAME = "Pravdeep Kullar";
@@ -109,8 +119,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf9",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#d9dcea" },
+    { media: "(prefers-color-scheme: dark)", color: "#10121f" },
+  ],
+  colorScheme: "light dark",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 /** Person plus WebSite, so search engines can attach the name to the site. */
@@ -231,8 +247,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-CA">
-      <body className={`${serif.variable} ${mono.variable}`}>
+    <html
+      lang="en-CA"
+      className={`${display.variable} ${label.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
         {children}
         <script
           type="application/ld+json"
