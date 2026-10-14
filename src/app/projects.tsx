@@ -83,7 +83,7 @@ export const projects: Project[] = [
     title: "Rosehill Design Build",
     category: "Client work",
     description:
-      "Rosehill is a design build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt it as a Next.js marketing site on Vercel and handled the domain and DNS setup. The video got ffmpeg compression and a Cloudflare R2 fallback, and it's still the slowest thing on the page. I added OG tags so sharing a link stopped looking broken, plus GTM and cookie consent, and ran the feedback rounds with the client's COO.",
+      "Rosehill is a design-build contractor in the GTA. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt it as a Next.js marketing site on Vercel and handled the domain and DNS setup. The video got ffmpeg compression and a Cloudflare R2 fallback, and it's still the slowest thing on the page. I added OG tags so sharing a link stopped looking broken, plus GTM and cookie consent, and ran the feedback rounds with the client's COO.",
     detail:
       "The owner had no interest in learning a CMS, so changes came to me through a Notion board and I made them myself. That was faster for both of us, and it means a new phone number still has to come through me.",
     noteLabel: "Trade-off",
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     title: "Rising Sun Montessori School",
     category: "Client work",
     description:
-      "Rising Sun is a WASC accredited Montessori school in El Dorado Hills, California, teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation is built on the four programs instead of on the school: each grade band has its own page, and the campus and gallery pages are there because parents want to see a classroom before they agree to visit one.",
+      "Rising Sun is a WASC-accredited Montessori school in El Dorado Hills, California, teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation is built on the four programs instead of on the school: each grade band has its own page, and the campus and gallery pages are there because parents want to see a classroom before they agree to visit one.",
     detail:
       "Enrollment doesn't happen on the site. Applications hand off to Transparent Classroom, which the school already runs, and a tour is booked by emailing the office, because tours are Wednesday mornings only and one person keeps that calendar. Two of the three things a parent came to do finish somewhere I don't control. Building either one on the site would have meant keeping a second copy of records the school already has.",
     noteLabel: "Trade-off",

@@ -9,7 +9,12 @@ export function PixelRoom() {
 
   useEffect(() => {
     if (!root.current) return;
-    return mountRoom(root.current);
+    // If the room ever fails to start, keep the rest of the page working.
+    try {
+      return mountRoom(root.current);
+    } catch (error) {
+      console.error("Pixel room failed to start", error);
+    }
   }, []);
 
   return (
@@ -46,7 +51,7 @@ export function PixelRoom() {
 
         <div className="status">
           <p className="status__skills" data-room="skills-line" aria-hidden="true">
-            <span className="status__label">I work in</span> <span data-room="skills" />
+            <span className="status__label">I work with</span> <span data-room="skills" />
             <span className="caret" />
           </p>
           <p className="status__prompt" data-room="prompt" aria-hidden="true" />

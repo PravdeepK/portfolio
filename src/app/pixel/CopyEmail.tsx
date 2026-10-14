@@ -17,6 +17,7 @@ export function CopyEmail({ email }: { email: string }) {
       className="btn"
       onClick={async () => {
         try {
+          if (!navigator.clipboard) throw new Error("No clipboard on this page");
           await navigator.clipboard.writeText(email);
           setCopied(true);
         } catch {

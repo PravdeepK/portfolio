@@ -38,7 +38,7 @@ const OG_IMAGE = {
   width: 1200,
   height: 630,
   type: "image/png",
-  alt: "Pravdeep Kullar, Forward Deployed Engineer and full-stack developer, Ontario, Canada",
+  alt: "Pravdeep Kullar, Forward Deployed Engineer and full-stack developer, Ontario, Canada, next to a pixel art room at night",
 };
 const GITHUB = "https://github.com/PravdeepK";
 const LINKEDIN = "https://www.linkedin.com/in/pravdeepk/";

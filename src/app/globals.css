@@ -371,6 +371,27 @@ a {
   user-select: none;
 }
 
+/* The same size fit() in room-engine.ts picks, so the room is already at its
+   final size on first paint instead of jumping from 256px when the script runs.
+   Keep the two in step: integer scale up to 4x when it fits, else fill the width. */
+@supports (width: round(down, 100px, 7px)) {
+  .stage {
+    container-type: inline-size;
+  }
+
+  .scene canvas {
+    --room-fit: min(100cqw - 8px, max(256px, (100dvh - 150px) * 16 / 9));
+    width: clamp(200px, max(round(down, var(--room-fit), 256px), min(var(--room-fit), 511.98px)), 1024px);
+    height: auto;
+  }
+
+  @media (max-width: 520px) {
+    .scene canvas {
+      --room-fit: min(100vw, max(256px, (100dvh - 150px) * 16 / 9));
+    }
+  }
+}
+
 .scene canvas:focus-visible {
   outline: 3px dashed var(--hi);
   outline-offset: -7px;

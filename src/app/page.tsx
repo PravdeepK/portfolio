@@ -34,7 +34,7 @@ const experience = [
   { years: "Jan–Aug 2026", company: "Humber Polytechnic", role: "Graduate certificate, artificial intelligence with machine learning" },
   { years: "Jul 2024–Dec 2025", company: "Mentera", role: "Full-Stack Developer" },
   { years: "Jan–Jul 2024", company: "Rebelsnow", role: "Web Developer Intern" },
-  { years: "Sept 2023–Aug 2025", company: "Humber Polytechnic", role: "Diploma, computer programming" },
+  { years: "Sep 2023–Aug 2025", company: "Humber Polytechnic", role: "Diploma, computer programming" },
 ];
 
 const alsoList = ["Meta Front-End Developer certification.", "Meta UI/UX Design certification."];
@@ -70,7 +70,7 @@ export default function Home() {
       <main className="wrap" id="top">
         <p className="sr-only">
           Hi, I&apos;m Pravdeep. I&apos;m a forward deployed engineer and full-stack developer. Welcome to my
-          website. I work in React, Next.js, TypeScript, Node.js, Python, Claude API, RAG, AI agents, FastAPI,
+          website. I work with React, Next.js, TypeScript, Node.js, Python, Claude API, RAG, AI agents, FastAPI,
           Firebase, PyTorch, scikit-learn, and whatever the problem needs.
         </p>
         <PixelRoom />
@@ -296,7 +296,7 @@ export default function Home() {
                 Got something you want <em>built?</em>
               </p>
               <p className="contact__copy">
-                I&apos;m open to frontend and full-stack roles, and I take freelance work. If the idea isn&apos;t
+                I&apos;m open to front-end and full-stack roles, and I take freelance work. If the idea isn&apos;t
                 figured out yet that&apos;s fine, I&apos;d rather hear it early. Email is the fastest way to reach me.
               </p>
               <div className="contact__actions">

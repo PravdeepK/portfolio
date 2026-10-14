@@ -46,7 +46,7 @@ type Hotspot = {
 
 const HOTSPOTS: Hotspot[] = [
   { id: "door", name: "Front door", short: "door", button: "Door: contact", rect: [3, 65, 28, 46], x0: 6, x1: 28, y0: 66, y1: 112,
-    text: "Got something you want built? I'm open to frontend and full-stack roles, and I take freelance work. Email is the fastest way to reach me.",
+    text: "Got something you want built? I'm open to front-end and full-stack roles, and I take freelance work. Email is the fastest way to reach me.",
     email: "pravdeepkk@gmail.com", scroll: { label: "Open contact", target: "contact" } },
   { id: "shelf", name: "Bookshelf", short: "bookshelf", button: "Bookshelf: skills", rect: [33, 52, 28, 59], x0: 34, x1: 60, y0: 52, y1: 112,
     text: "React, Next.js, TypeScript and Node.js on the product side. Python, PyTorch and scikit-learn on the ML side. The Claude API, RAG and AI agents in between.",
@@ -68,7 +68,7 @@ const HOTSPOTS: Hotspot[] = [
 ];
 
 const INTRO = ["Hi, I'm Pravdeep,", "I'm a forward deployed engineer and full-stack developer.", "Welcome to my website!"];
-export const SKILLS = ["React", "Next.js", "TypeScript", "Node.js", "Python", "Claude API", "RAG", "AI agents", "FastAPI", "Firebase", "PyTorch", "scikit-learn", "and whatever the problem needs"];
+export const SKILLS = ["React", "Next.js", "TypeScript", "Node.js", "Python", "Claude API", "RAG", "AI agents", "FastAPI", "Firebase", "PyTorch", "scikit-learn", "whatever the problem needs"];
 
 const STARS = [[102, 27], [106, 38], [112, 29], [117, 35], [127, 28], [133, 33], [139, 27], [145, 31], [120, 41], [143, 40], [110, 43]];
 const CLOUDS = [
@@ -84,6 +84,17 @@ const mk = (w: number, h: number) => {
   return c;
 };
 const ctx2d = (c: HTMLCanvasElement, opts?: CanvasRenderingContext2DSettings) => c.getContext("2d", opts) as Ctx;
+
+/** A v4 UUID. crypto.randomUUID only exists on secure pages (and newer browsers);
+    getRandomValues works on plain http too, such as a phone on the local network. */
+function uuid(): string {
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  const b = crypto.getRandomValues(new Uint8Array(16));
+  b[6] = (b[6] & 0x0f) | 0x40;
+  b[8] = (b[8] & 0x3f) | 0x80;
+  const h = [...b].map((x) => x.toString(16).padStart(2, "0")).join("");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+}
 
 function store(key: string, value?: string): string | null {
   try {
@@ -508,21 +519,21 @@ export function mountRoom(root: HTMLElement): () => void {
       span.className = "dialog__email";
       span.textContent = email;
       const copy = smallBtn("Copy address");
+      const selectIt = () => {
+        const sel = getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+        copy.textContent = "Selected, press copy";
+      };
       copy.addEventListener("click", () => {
-        navigator.clipboard.writeText(email).then(
-          () => {
-            copy.textContent = "Copied";
-            announce("Email address copied");
-          },
-          () => {
-            const sel = getSelection();
-            const range = document.createRange();
-            range.selectNodeContents(span);
-            sel?.removeAllRanges();
-            sel?.addRange(range);
-            copy.textContent = "Selected, press copy";
-          }
-        );
+        // No clipboard API on plain http pages; select the address instead.
+        if (!navigator.clipboard) return selectIt();
+        navigator.clipboard.writeText(email).then(() => {
+          copy.textContent = "Copied";
+          announce("Email address copied");
+        }, selectIt);
       });
       dlgFoot.append(span, copy);
     }
@@ -734,7 +745,7 @@ export function mountRoom(root: HTMLElement): () => void {
   const player = (() => {
     const saved = store("pixelroom.snake.player");
     if (saved && /^[0-9a-f-]{36}$/.test(saved)) return saved;
-    const id = crypto.randomUUID();
+    const id = uuid();
     store("pixelroom.snake.player", id);
     return id;
   })();
@@ -963,7 +974,7 @@ export function mountRoom(root: HTMLElement): () => void {
   }
   if (reduce.matches) {
     bubbleText.textContent = INTRO[2];
-    skillsEl.textContent = SKILLS.join(", ");
+    skillsEl.textContent = SKILLS.slice(0, -1).join(", ") + ", and " + SKILLS[SKILLS.length - 1];
     introDone = true;
   } else {
     typeSeq(bubbleText, INTRO, [1400, 1400, 1200], false).then(() => {
