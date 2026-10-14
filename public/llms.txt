@@ -10,7 +10,7 @@
 
 ## Education and certifications
 - Graduate Certificate, Artificial Intelligence with Machine Learning, Humber Polytechnic (Jan 2026 to Aug 2026)
-- Computer Programming Diploma, Humber Polytechnic (Sept 2023 to Aug 2025)
+- Computer Programming Diploma, Humber Polytechnic (Sep 2023 to Aug 2025)
 - Meta Front-End Developer certification
 - Meta UI/UX Design certification
 
@@ -22,20 +22,20 @@
 
 ## Selected work
 - Forward deployed engineering (Nx Growth Partners): scoping client AI and software problems into milestones and coordinating delivery.
-- Tera (Mentera): Canvas side panel rendering streamed artifacts (markdown, code, HTML, SVG, Mermaid, React) with a sandboxed iframe renderer. https://mentera.ai
+- [Tera (Mentera)](https://mentera.ai): Canvas side panel rendering streamed artifacts (markdown, code, HTML, SVG, Mermaid, React) with a sandboxed iframe renderer.
 - Making sites fast and findable: Mentera marketing site performance pass and Rosehill hero-video delivery (ffmpeg, Cloudflare R2).
-- Rosehill Design Build: freelance Next.js site for a GTA construction contractor. https://www.rosehilldesignbuild.com/
-- Rising Sun Montessori School: school site with program-based navigation. https://risingsunmontessori.org/
-- Rebelsnow: client e-commerce websites with catalog, cart, checkout, and payment. https://www.rebel-snow.com/
-- FakeWordle: multiplayer Wordle-style game on Next.js 15, Firebase, a WebSocket server on Railway, and Claude Haiku word generation. https://www.fakewordle.com
-- Schedule to calendar: Claude vision parses photographed timetables into Google Calendar and Outlook events. https://schedule-to-calendar-two.vercel.app
+- [Rosehill Design Build](https://www.rosehilldesignbuild.com/): freelance Next.js site for a GTA construction contractor.
+- [Rising Sun Montessori School](https://risingsunmontessori.org/): school site with program-based navigation.
+- [Rebelsnow](https://www.rebel-snow.com/): client e-commerce websites with catalog, cart, checkout, and payment.
+- [FakeWordle](https://www.fakewordle.com): multiplayer Wordle-style game on Next.js 15, Firebase, a WebSocket server on Railway, and Claude Haiku word generation.
+- [Schedule to calendar](https://schedule-to-calendar-two.vercel.app): Claude vision parses photographed timetables into Google Calendar and Outlook events.
 - Cineplex ticket watcher: always-on Raspberry Pi 4 bot that monitors Cineplex ticket on-sale times and sends push notifications.
 - Countdown widgets: iOS app on Expo SDK 54 and React Native 0.81 with SwiftUI WidgetKit Home Screen widgets.
 - Health risk classifier: capstone comparing logistic regression against a small neural network. Not public yet.
 - HuntigoX: capstone that checks job postings against fraud patterns. Not public yet.
 
 ## Links
-- Site: https://www.builtbyprav.com
-- GitHub: https://github.com/PravdeepK
-- LinkedIn: https://www.linkedin.com/in/pravdeepk/
-- Contact: pravdeepkk@gmail.com
+- [Site](https://www.builtbyprav.com)
+- [GitHub](https://github.com/PravdeepK)
+- [LinkedIn](https://www.linkedin.com/in/pravdeepk/)
+- [Email](mailto:pravdeepkk@gmail.com): pravdeepkk@gmail.com
