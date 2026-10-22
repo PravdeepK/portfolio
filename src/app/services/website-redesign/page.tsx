@@ -20,6 +20,11 @@ export default function WebsiteRedesignPage() {
     >
       <h2>When a redesign makes sense</h2>
       <p>
+        This page is for sites that aren&apos;t on WordPress. If yours is, the{" "}
+        <Link href={servicePath("wordpress-migration")}>WordPress migration</Link> covers the move and everything a
+        redesign includes.
+      </p>
+      <p>
         Not every old site needs replacing. If yours loads quickly and people can find your number, a few targeted
         fixes cost less, and the <Link href={servicePath("speed-and-seo")}>speed and local SEO work</Link> covers that. A
         rebuild makes sense when the problem is in the foundation:

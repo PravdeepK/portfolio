@@ -161,6 +161,24 @@
   color: var(--warm);
 }
 
+/* The main service gets the full row, ahead of the supporting ones. */
+.svc-cards > .svc-cards__main {
+  grid-column: 1 / -1;
+}
+
+.svc-cards__main .svc-card {
+  border-color: var(--warm);
+}
+
+.svc-cards__main .svc-card h3 {
+  font-size: 28px;
+}
+
+.svc-cards__main .svc-card p {
+  max-width: 60ch;
+  font-size: 15px;
+}
+
 .svc-card h3 {
   font-family: var(--f-display);
   font-size: 23px;

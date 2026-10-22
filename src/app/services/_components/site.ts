@@ -23,18 +23,19 @@ export type ServicePage = {
   summary: string;
 };
 
+/** The order every list uses: the WordPress move first, the supporting services after it. */
 export const servicePages: ServicePage[] = [
-  {
-    slug: "website-redesign",
-    name: "Website redesign",
-    summary:
-      "A rebuild of an outdated site around the one thing a visitor came to do: call you, book, or ask for a quote.",
-  },
   {
     slug: "wordpress-migration",
     name: "WordPress migration",
     summary:
-      "Moving an aging WordPress or PHP site to a faster stack, with every old URL redirected so search traffic carries over.",
+      "Moving a slow, high-maintenance WordPress site onto a fast custom site with no plugins to update. Every old URL is redirected, so search traffic carries over.",
+  },
+  {
+    slug: "website-redesign",
+    name: "Website redesign",
+    summary:
+      "For sites that aren't on WordPress. A rebuild around the one thing a visitor came to do: call you, book, or ask for a quote.",
   },
   {
     slug: "speed-and-seo",
@@ -50,6 +51,21 @@ export const servicePages: ServicePage[] = [
 ];
 
 export const servicePath = (slug: string) => `/services/${slug}`;
+
+export type Faq = { question: string; answer: string };
+
+/** One FAQPage node from the same list the page renders, so the two always match. */
+export function faqJsonLd(url: string, faqs: Faq[]) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
 
 export function pageMetadata({
   path,
@@ -120,11 +136,13 @@ export function serviceJsonLd({
   title,
   name,
   description,
+  faqs,
 }: {
   path: string;
   title: string;
   name: string;
   description: string;
+  faqs?: Faq[];
 }) {
   const url = absolute(path);
   return {
@@ -147,6 +165,7 @@ export function serviceJsonLd({
         },
         areaServed: AREA_SERVED,
       },
+      ...(faqs ? [faqJsonLd(url, faqs)] : []),
     ],
   };
 }

@@ -22,13 +22,17 @@ import {
 } from "./_components/site";
 
 const PATH = "/services";
-const TITLE = "Website Redesign for Ontario Small Businesses | Built by Prav";
+const TITLE = "WordPress to Modern Site Migration, Ontario | Built by Prav";
 const DESCRIPTION =
-  "Freelance web developer in Ontario. I redesign slow, outdated small-business websites into fast, mobile-friendly sites that win more calls. Free site review.";
+  "I move Ontario small businesses off slow WordPress sites onto fast custom sites with no plugins to update. Old URLs redirected. Redesigns too. Free site review.";
 
 export const metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
 const problems = [
+  {
+    label: "Endless plugin updates",
+    body: "A WordPress site has a core, a theme and a handful of plugins, and each one needs updates. Most WordPress security holes are found in plugins, and an update that breaks the layout is common enough that some owners stop updating at all.",
+  },
   {
     label: "Slow on phones",
     body: "A lot of visitors to a local business site are on a phone, sometimes on mobile data. If the page takes several seconds to show anything, some of them leave before they see what you do.",
@@ -38,7 +42,7 @@ const problems = [
     body: "If a visitor has to hunt for your phone number or the quote form, some will call the next business in the search results instead. The thing you want them to do should be visible without scrolling.",
   },
   {
-    label: "Hard to update",
+    label: "Hard to edit",
     body: "Changing your hours shouldn't mean logging into a page builder nobody has the password for, or waiting a week on whoever built the site years ago.",
   },
   {
@@ -76,7 +80,7 @@ const faqs = [
   {
     question: "How much does a website cost?",
     answer:
-      "Redesigns start at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up on its own starts at $750 CAD.",
+      "Moving off WordPress or a redesign starts at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up on its own starts at $750 CAD.",
   },
   {
     question: "How long does it take?",
@@ -96,12 +100,12 @@ const faqs = [
   {
     question: "Can I edit the site myself after launch?",
     answer:
-      "Yes, if you want to. I can set the site up so you make edits yourself. That setup is a paid add-on, quoted separately, so tell me during the free review and I'll plan the build around it. Some owners would rather not learn an editor at all. Rosehill sends changes through a shared Notion board and I make them, which is faster for both of us but means even a new phone number goes through me.",
+      "Yes, as an optional paid add-on, quoted separately. After launch you get your own login to a simple editing dashboard, similar to WordPress, where you can update text, swap images and add posts. You can't install plugins or change the layout, so nothing breaks and nothing needs updating. Some owners would rather not edit at all. Rosehill sends changes through a shared Notion board and I make them, which is faster for both of us but means even a new phone number goes through me.",
   },
   {
     question: "Do I have to move off WordPress?",
     answer:
-      "No. If your WordPress site is fast enough and you're comfortable editing it, a redesign can stay on WordPress. Rising Sun Montessori's site is WordPress with Elementor. I suggest moving when the site is slow on phones, the plugins are years out of date, or simple changes keep breaking the layout.",
+      "Not if your WordPress site is fast, up to date and easy for you to edit. If that's the case, I'll tell you in the free review. Moving pays off when the site is slow on phones, the plugins are years out of date, or simple changes keep breaking the layout.",
   },
   {
     question: "Do I need a whole new website, or just some fixes?",
@@ -196,18 +200,19 @@ export default function ServicesPage() {
       <section className="intro svc-hero" aria-labelledby="hero-title">
         <div>
           <h1 id="hero-title">
-            Website redesigns for <em>Ontario small businesses</em>
+            Move your business off WordPress, <em>onto a fast custom site</em>
           </h1>
-          <p className="intro__context">Fast, mobile-friendly sites that bring in more calls and quote requests.</p>
+          <p className="intro__context">No plugin updates, no security patches, and pages that load quickly on a phone.</p>
           <p className="intro__context">
-            I&apos;m Pravdeep, a freelance web developer in Ontario. I rebuild slow, outdated sites so they load
-            quickly on a phone and make it obvious how to reach you.
+            I&apos;m Pravdeep, a freelance web developer in Ontario. I rebuild slow, high-maintenance WordPress sites as
+            custom sites and redirect every old address, so Google and your customers can still find each page. If
+            your site isn&apos;t on WordPress, I redesign those too.
           </p>
           <div className="intro__links">
             <ReviewButton />
-            <a className="btn" href="#work">
-              Recent client sites &darr;
-            </a>
+            <Link className="btn" href={servicePath("wordpress-migration")}>
+              How the move works &rarr;
+            </Link>
           </div>
         </div>
 
@@ -227,7 +232,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <dt>Built with</dt>
-                <dd>Next.js on Vercel, or WordPress when it fits</dd>
+                <dd>Next.js and TypeScript on Vercel</dd>
               </div>
               <div>
                 <dt>First step</dt>
@@ -268,13 +273,16 @@ export default function ServicesPage() {
           index="02"
           title="Services"
           id="services-title"
-          note="Most projects use more than one, since a rebuilt site also fixes most of what makes the old one slow."
+          note="Most projects start with the move off WordPress. The other three support it, or cover sites that aren't on WordPress."
         />
         <ul className="svc-cards">
           {servicePages.map((page, index) => (
-            <li className="lift" key={page.slug}>
+            <li className={index === 0 ? "lift svc-cards__main" : "lift"} key={page.slug}>
               <div className="panel notch svc-card">
-                <span className="label">{String(index + 1).padStart(2, "0")}</span>
+                <span className="label">
+                  {String(index + 1).padStart(2, "0")}
+                  {index === 0 && " · Main service"}
+                </span>
                 <h3>
                   <Link href={servicePath(page.slug)}>{page.name}</Link>
                 </h3>
@@ -379,7 +387,7 @@ export default function ServicesPage() {
         <div className="lift">
           <div className="panel notch svc-price">
             <p className="svc-price__amount">
-              <small>Website redesigns</small>
+              <small>WordPress migrations and redesigns</small>
               Starting at $2,500 CAD
             </p>
             <div>
