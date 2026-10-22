@@ -74,6 +74,21 @@ const faqs = [
       "I run your site through Google PageSpeed Insights on mobile and desktop, use it on a phone the way a customer would, check how your pages show up in Google search results, and note anything that makes it hard to call you or ask for a quote. You get a short summary by email with what I'd fix first. There's no obligation to hire me afterwards.",
   },
   {
+    question: "How much does a website cost?",
+    answer:
+      "Redesigns start at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up on its own starts at $750 CAD.",
+  },
+  {
+    question: "How long does it take?",
+    answer:
+      "Usually 2 to 4 weeks from the free review to launch, depending on how quickly the content and photos come in.",
+  },
+  {
+    question: "How does payment work?",
+    answer:
+      "A 50% deposit to start and the other 50% at launch. After launch, care plans are $75 or $150 CAD a month, month to month.",
+  },
+  {
     question: "Will a new website hurt my Google ranking?",
     answer:
       "It shouldn't, if the move is handled carefully. I keep pages that already rank at the same address where I can, set up permanent (301) redirects for any address that changes, and submit the new sitemap in Google Search Console after launch. Rankings can wobble for a few weeks while Google recrawls the site.",
