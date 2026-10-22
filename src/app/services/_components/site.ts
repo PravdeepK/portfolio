@@ -8,6 +8,7 @@ export const SITE = "https://www.builtbyprav.com";
 export const BRAND = "Built by Prav";
 export const EMAIL = "hello@builtbyprav.com";
 export const REVIEW_HREF = `mailto:${EMAIL}?subject=Free%20website%20review`;
+export const CALL_HREF = `mailto:${EMAIL}?subject=Free%20site%20review`;
 export const GITHUB = "https://github.com/PravdeepK";
 export const LINKEDIN = "https://www.linkedin.com/in/pravdeepk/";
 

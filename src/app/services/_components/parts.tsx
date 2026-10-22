@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { REVIEW_HREF, EMAIL, servicePages, servicePath, type Crumb } from "./site";
+import { CALL_HREF, REVIEW_HREF, EMAIL, servicePages, servicePath, type Crumb } from "./site";
 
 export function SectionHead({ index, title, id, note }: { index: string; title: string; id: string; note?: string }) {
   return (
@@ -55,12 +55,15 @@ export function ReviewCta({ index }: { index: string }) {
             a phone the way a customer would, and email back what I&apos;d fix first. There&apos;s no obligation to hire
             me afterwards.
           </p>
+          <p className="contact__copy">Rather talk it through? Email me with a couple of times that work for you.</p>
           <div className="contact__actions">
             <ReviewButton />
             <a className="contact__email" href={REVIEW_HREF}>
               {EMAIL}
             </a>
-            {/* TODO: Cal.com link */}
+            <a className="btn" href={CALL_HREF}>
+              Ask for a call
+            </a>
           </div>
         </div>
       </div>
