@@ -24,7 +24,7 @@
 - Forward deployed engineering (Nx Growth Partners): scoping client AI and software problems into milestones and coordinating delivery.
 - [Tera (Mentera)](https://mentera.ai): Canvas side panel rendering streamed artifacts (markdown, code, HTML, SVG, Mermaid, React) with a sandboxed iframe renderer.
 - Making sites fast and findable: Mentera marketing site performance pass and Rosehill hero-video delivery (ffmpeg, Cloudflare R2).
-- [Rosehill Design Build](https://www.rosehilldesignbuild.com/): freelance Next.js site for a GTA construction contractor.
+- [Rosehill Design Build](https://www.rosehilldesignbuild.com/): freelance Next.js site for an Ontario construction contractor.
 - [Rising Sun Montessori School](https://risingsunmontessori.org/): school site with program-based navigation.
 - [Rebelsnow](https://www.rebel-snow.com/): client e-commerce websites with catalog, cart, checkout, and payment.
 - [FakeWordle](https://www.fakewordle.com): multiplayer Wordle-style game on Next.js 15, Firebase, a WebSocket server on Railway, and Claude Haiku word generation.
@@ -34,8 +34,16 @@
 - Health risk classifier: capstone comparing logistic regression against a small neural network. Not public yet.
 - HuntigoX: capstone that checks job postings against fraud patterns. Not public yet.
 
+## Website services
+Freelance website projects for small businesses in Ontario, alongside full-time front-end and full-stack roles.
+- [Website services](https://www.builtbyprav.com/services): overview of the freelance website work and how to start a project.
+- [Website redesign](https://www.builtbyprav.com/services/website-redesign): rebuilding an outdated or template site as a fast, mobile-friendly site.
+- [WordPress migration](https://www.builtbyprav.com/services/wordpress-migration): moving an existing WordPress site's pages, content and URLs to a new setup.
+- [Speed and SEO](https://www.builtbyprav.com/services/speed-and-seo): load time, Core Web Vitals and technical SEO fixes for an existing site.
+- [Website care](https://www.builtbyprav.com/services/website-care): ongoing updates, fixes and monitoring after a site launches.
+
 ## Links
 - [Site](https://www.builtbyprav.com)
 - [GitHub](https://github.com/PravdeepK)
 - [LinkedIn](https://www.linkedin.com/in/pravdeepk/)
-- [Email](mailto:pravdeepkk@gmail.com): pravdeepkk@gmail.com
+- [Email](mailto:hello@builtbyprav.com): hello@builtbyprav.com
