@@ -100,8 +100,10 @@ export function text3(c: Ctx, str: string | number, x: number, y: number, color:
 
 export const textW = (s: string | number, scale = 1) => (String(s).length * 4 - 1) * scale;
 
-/* The character: grey hoodie (hood bunched behind the neck, drawstrings,
-   front pocket), black sweats, cream shoes. Faces right; flipped for left. */
+/* The character, in a hoodie (hood bunched behind the neck, drawstrings, front
+   pocket), sweats and shoes. Faces right; flipped for left. The clothes are
+   colour slots and swappable rows, so the outfit can change on every page
+   load (see OUTFITS and TOPS). */
 const BODY = [
   ".....oooooo.....", "...oohhhhhhoo...", "..ohhHHHhhhhho..", ".ohhhhhhhhhhhho.",
   ".ohhhhhhhhhhhhho", ".ohhhhhhhhhhhhho", ".ohhhhhsssssssso", ".ohhhhssesssesso",
@@ -118,18 +120,96 @@ const LEGS = {
       ".....opppPo.....", ".....obbbbbo....", ".....ooooooo...."],
 };
 export type Legs = keyof typeof LEGS;
+/** Outline, hair, skin and eyes. These never change. */
 const SPR: Record<string, string> = {
   o: "#1b1d33", h: "#2b2230", H: "#4a3a4f", s: "#c98e66", S: "#a5704f", e: "#1b1d33",
-  t: "#9a9ea8", T: "#767a86", d: "#e6e7ec", p: "#2c2d36", P: "#1c1d24", b: "#efe6cf",
 };
 
+/** Top (t, shade T, detail d), bottoms (p, shade P) and shoes (b). The first is the original outfit. */
+const OUTFITS: Record<"t" | "T" | "d" | "p" | "P" | "b", string>[] = [
+  { t: "#9a9ea8", T: "#767a86", d: "#e6e7ec", p: "#2c2d36", P: "#1c1d24", b: "#efe6cf" }, // grey, black sweats
+  { t: "#3d4f8a", T: "#2c3a6b", d: "#e6e7ec", p: "#8a7a5c", P: "#6b5d44", b: "#f2f2f2" }, // navy, khakis
+  { t: "#3f7a52", T: "#2d5c3d", d: "#e6e7ec", p: "#2c2d36", P: "#1c1d24", b: "#f2f2f2" }, // green
+  { t: "#8a3a44", T: "#6b2b33", d: "#efe6cf", p: "#3a5a8a", P: "#2c456b", b: "#efe6cf" }, // maroon, jeans
+  { t: "#c9a03e", T: "#a07e2c", d: "#f7f2e4", p: "#2c2d36", P: "#1c1d24", b: "#4a4f6e" }, // mustard
+  { t: "#3a3d4a", T: "#2a2c36", d: "#c9cbd6", p: "#767a86", P: "#5d6170", b: "#efe6cf" }, // black, grey sweats
+  { t: "#9f8fd0", T: "#7e6fb0", d: "#f2f2f2", p: "#2c2d36", P: "#1c1d24", b: "#f2f2f2" }, // lavender
+  { t: "#d9774b", T: "#b05e39", d: "#f7f2e4", p: "#3a5a8a", P: "#2c456b", b: "#efe6cf" }, // orange, jeans
+];
+
+/** Rows of BODY drawn over by a hat or glasses, with their own colours. */
+type Extra = { rows: Record<number, string>; colors: Record<string, string> };
+
+/** BODY rows 10 to 19 for each top. The hoodie is BODY itself. */
+const NO_HOOD = { 10: ".ohhhSsssssssso.", 11: "..oohSsssssoo..." };
+const TOPS: Record<number, string>[] = [
+  {}, // hoodie
+  { // sweater, with a stripe across the chest
+    ...NO_HOOD,
+    12: "...otTSSTto.....", 13: "....otttttto....", 14: "...otttttttto...", 15: "..otddddddddto..",
+    17: "..otTttttttTto..",
+  },
+  { // t-shirt: short sleeves, bare forearms, a small print
+    ...NO_HOOD,
+    12: "...ottSStto.....", 13: "....otttttto....", 14: "...otttttttto...", 15: "..otttttttttto..",
+    16: "..osTttddttTso..", 17: "..osTttddttTso..", 18: "..osTttttttTso..",
+  },
+];
+
+/** Shorts end above the knee: skin, then socks, then the shoes. */
+const SHORTS: Record<number, Record<string, string>> = { 3: { p: "s", P: "S" }, 4: { p: "w", P: "w" } };
+const HATS: Extra[] = [
+  { // beanie
+    rows: { 1: "...ookkkkkkoo...", 2: "..okkkkkkkkkko..", 3: ".oKKKKKKKKKKKKo." },
+    colors: { k: "#c0483a", K: "#9c3a2f" },
+  },
+  { // cap, brim to the front
+    rows: { 1: "...ookkkkkkoo...", 2: "..okkkkkkkkkko..", 3: ".okkkkkkkkkkkkko", 4: ".ohhhhhhhKKKKKKK" },
+    colors: { k: "#3d4fc4", K: "#2c3a96" },
+  },
+];
+const SHADES: Extra = {
+  rows: { 7: ".ohhhhgGgggGggso", 8: ".ohhhhsgggsgggso" },
+  colors: { g: "#23253a", G: "#6f7699" },
+};
+
+let look: (Extra & { shorts: boolean }) | undefined;
+
+/** Picked once per page load, so the room and the stats panel avatar match, and never the same outfit twice in a row. */
+function currentLook() {
+  if (look) return look;
+  let last = -1;
+  try {
+    last = Number(localStorage.getItem("outfit") ?? -1);
+  } catch {}
+  let n = Math.floor(Math.random() * (OUTFITS.length - 1));
+  if (n >= last && last >= 0) n++;
+  try {
+    localStorage.setItem("outfit", String(n));
+  } catch {}
+  const roll = Math.random();
+  const hat = roll < 0.25 ? HATS[0] : roll < 0.5 ? HATS[1] : undefined;
+  const shades = Math.random() < 0.25 ? SHADES : undefined;
+  const top = TOPS[Math.floor(Math.random() * TOPS.length)];
+  look = {
+    rows: { ...top, ...hat?.rows, ...shades?.rows },
+    colors: { ...SPR, w: "#f2f2f2", ...OUTFITS[n], ...hat?.colors, ...shades?.colors },
+    shorts: Math.random() < 0.3,
+  };
+  return look;
+}
+
 export function drawSprite(c: Ctx, legs: Legs, x0: number, y0: number, flip: boolean, dy: number, blink: boolean) {
-  BODY.concat(LEGS[legs]).forEach((row, r) => {
+  const { rows, colors, shorts } = currentLook();
+  BODY.concat(LEGS[legs]).forEach((base, r) => {
+    const row = rows[r] ?? base;
+    const leg = shorts ? SHORTS[r - BODY.length] : undefined;
     for (let k = 0; k < 16; k++) {
       let ch = row[k] || ".";
       if (ch === ".") continue;
       if (blink && ch === "e") ch = "s";
-      c.fillStyle = SPR[ch];
+      if (leg?.[ch]) ch = leg[ch];
+      c.fillStyle = colors[ch];
       c.fillRect(x0 + (flip ? 15 - k : k), y0 + r + (r < 20 ? dy : 0), 1, 1);
     }
   });
