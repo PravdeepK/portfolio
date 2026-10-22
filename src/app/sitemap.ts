@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "./site";
 
-/** Every path without a trailing slash, matching the canonicals. The /services pages are built on their own branch. */
+/** Every path without a trailing slash, matching the canonicals. */
 const pages: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   { path: "/services", priority: 0.9 },
