@@ -69,7 +69,10 @@ export default function WebsiteRedesignPage() {
         Access to wherever your domain is registered, your logo, and any photos you want to use. If the text on your
         current site still describes the business well, I&apos;ll reuse it. If it doesn&apos;t, we go through what
         needs to change during planning.
-        {/* TODO: confirm whether copywriting and photography are part of a redesign */}
+      </p>
+      <p>
+        Copywriting and photography aren&apos;t included. You supply the text and photos, and I tidy up the text you
+        give me and lay it out on the pages. Where you don&apos;t have photos, we can use AI-generated images instead.
       </p>
 
       <h2>What a redesign won&apos;t fix</h2>

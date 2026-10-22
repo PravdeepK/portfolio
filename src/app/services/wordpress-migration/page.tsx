@@ -67,9 +67,8 @@ export default function WordPressMigrationPage() {
 
       <h2>What changes for you</h2>
       <p>
-        You won&apos;t log into a WordPress dashboard anymore. Edits come to me, or we plan a way for you to make them
-        yourself during the build.
-        {/* TODO: confirm the self-editing option you offer after a migration (CMS or not) */} The habit of installing
+        You won&apos;t log into a WordPress dashboard anymore. Edits come to me, or I can set the site up so you make
+        them yourself. That setup is a paid add-on, quoted separately. The habit of installing
         a plugin for every new feature goes away too. A new feature gets built into the site, and once it&apos;s there,
         it doesn&apos;t need a monthly update.
       </p>
