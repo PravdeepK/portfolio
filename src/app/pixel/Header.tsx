@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -9,7 +10,8 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
-export function Header() {
+/** Off the homepage the section links point back to it, since the sections only exist there. */
+export function Header({ home = "" }: { home?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
@@ -32,20 +34,21 @@ export function Header() {
   return (
     <header className="bar lift">
       <div className="bar__inner panel notch">
-        <a className="wordmark" href="#top">
+        <a className="wordmark" href={home || "#top"}>
           Pravdeep Kullar <small>Developer</small>
         </a>
         <nav aria-label="Main">
           {sections.map(({ id, label }) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={`${home}#${id}`}
               className={active === id ? "is-active" : undefined}
               aria-current={active === id ? "true" : undefined}
             >
               {label}
             </a>
           ))}
+          <Link href="/services">Services</Link>
           <ThemeToggle />
         </nav>
       </div>

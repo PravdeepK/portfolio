@@ -621,7 +621,7 @@ a {
   background: var(--panel);
 }
 
-.board h2 {
+.board__title {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -633,7 +633,7 @@ a {
   text-transform: uppercase;
 }
 
-.board h2 span {
+.board__title span {
   color: var(--ink-soft);
   font-size: 11px;
 }
@@ -1438,7 +1438,7 @@ kbd {
   }
 
   .inventory li,
-  .board h2 span {
+  .board__title span {
     font-size: 12px;
   }
 

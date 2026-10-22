@@ -1,9 +1,72 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { projects } from "./projects";
 import { skillGroups } from "./skills";
 import { Avatar } from "./pixel/Avatar";
 import { CopyEmail } from "./pixel/CopyEmail";
 import { Header } from "./pixel/Header";
-import { PixelRoom } from "./pixel/PixelRoom";
+import { PixelRoomLazy } from "./pixel/PixelRoomLazy";
+import { DESCRIPTION, EMAIL, GITHUB, LINKEDIN, NAME, OG_IMAGE, PERSON_ID, SITE, TITLE, WEBSITE_ID } from "./site";
+
+/** Homepage only, so other routes don't inherit its canonical or its profile type. */
+export const metadata: Metadata = {
+  alternates: {
+    canonical: SITE,
+  },
+  openGraph: {
+    type: "profile",
+    url: SITE,
+    siteName: NAME,
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "en_CA",
+    firstName: "Pravdeep",
+    lastName: "Kullar",
+    images: [OG_IMAGE],
+  },
+};
+
+/** Build time, so the date moves whenever the content does. */
+const BUILT = new Date().toISOString();
+
+/** The homepage as a ProfilePage about the Person in the layout, with the projects as its parts. */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE}/#page`,
+  url: SITE,
+  name: TITLE,
+  description: DESCRIPTION,
+  inLanguage: "en-CA",
+  dateModified: BUILT,
+  isPartOf: { "@id": WEBSITE_ID },
+  about: { "@id": PERSON_ID },
+  mainEntity: { "@id": PERSON_ID },
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: `${SITE}${OG_IMAGE.url}`,
+    width: OG_IMAGE.width,
+    height: OG_IMAGE.height,
+  },
+  hasPart: {
+    "@type": "ItemList",
+    name: "Selected work",
+    numberOfItems: projects.length,
+    itemListElement: projects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: project.title,
+        description: project.description,
+        about: project.category,
+        keywords: project.meta.join(", "),
+        author: { "@id": PERSON_ID },
+        ...(project.href ? { url: project.href } : {}),
+      },
+    })),
+  },
+};
 
 const coursework = [
   {
@@ -45,10 +108,6 @@ const specs = [
   { term: "Based in", value: "Ontario, Canada" },
 ];
 
-const EMAIL = "pravdeepkk@gmail.com";
-const GITHUB = "https://github.com/PravdeepK";
-const LINKEDIN = "https://www.linkedin.com/in/pravdeepk/";
-
 function SectionHead({ index, title, id, note }: { index: string; title: string; id: string; note?: string }) {
   return (
     <div className="section__head">
@@ -73,7 +132,7 @@ export default function Home() {
           website. I work with React, Next.js, TypeScript, Node.js, Python, Claude API, RAG, AI agents, FastAPI,
           Firebase, PyTorch, scikit-learn, and whatever the problem needs.
         </p>
-        <PixelRoom />
+        <PixelRoomLazy />
 
         <section className="intro" aria-labelledby="hero-title">
           <div>
@@ -85,6 +144,7 @@ export default function Home() {
               platform for private practices and medspas. I hold a graduate certificate in AI with machine learning
               from Humber.
             </p>
+            <p className="intro__context">Also taking on freelance website projects for small businesses.</p>
             <div className="intro__links">
               <a className="btn btn--solid" href="#work">
                 Selected work &darr;
@@ -95,6 +155,9 @@ export default function Home() {
               <a className="btn" href={LINKEDIN} target="_blank" rel="me noreferrer">
                 LinkedIn &#8599;
               </a>
+              <Link className="btn" href="/services">
+                Website services &rarr;
+              </Link>
             </div>
           </div>
 
@@ -296,8 +359,9 @@ export default function Home() {
                 Got something you want <em>built?</em>
               </p>
               <p className="contact__copy">
-                I&apos;m open to front-end and full-stack roles, and I take freelance work. If the idea isn&apos;t
-                figured out yet that&apos;s fine, I&apos;d rather hear it early. Email is the fastest way to reach me.
+                I&apos;m open to full-time front-end and full-stack roles, and I take on freelance website projects
+                for small businesses. If the idea isn&apos;t figured out yet that&apos;s fine, I&apos;d rather hear it
+                early. Email is the fastest way to reach me.
               </p>
               <div className="contact__actions">
                 <a className="contact__email" href={`mailto:${EMAIL}`}>
@@ -320,11 +384,18 @@ export default function Home() {
             <a href={LINKEDIN} target="_blank" rel="me noreferrer">
               LinkedIn
             </a>
+            <Link href="/services">Website services</Link>
             <a href="#top">Back to top &uarr;</a>
           </div>
           <p>Ontario, Canada · 2026</p>
         </div>
       </footer>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
     </>
   );
 }

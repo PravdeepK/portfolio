@@ -16,7 +16,7 @@ export function ThemeToggle() {
     <button
       className="btn btn--small"
       type="button"
-      aria-label={night ? "Switch to the daytime light theme" : "Switch to the night dark theme"}
+      aria-label={night ? "Lights on, switch to the daytime light theme" : "Lights off, switch to the night dark theme"}
       onClick={() => {
         const next = isNight() ? "light" : "dark";
         document.documentElement.setAttribute("data-theme", next);
