@@ -20,7 +20,6 @@ export default function WebsiteCarePage() {
       lead="Most small-business sites need small changes every so often: new hours, a holiday closure, a price, a photo. Website care is me making those changes so the site stays accurate without you learning how it works."
     >
       <h2>What care covers</h2>
-      {/* TODO: care plan tiers, monthly price and response time */}
       <ul>
         <li>Content edits: text, prices, photos, staff, opening hours and holiday notices.</li>
         <li>
@@ -30,9 +29,27 @@ export default function WebsiteCarePage() {
         <li>Hosting help: checking the site is up, the HTTPS certificate renews, and forms still deliver.</li>
         <li>Domain and DNS: renewals, pointing the domain, and the email records that come with it.</li>
         <li>
-          A regular speed check in PageSpeed Insights, so a heavy new photo doesn&apos;t quietly undo the work from
-          launch.
+          On the Standard plan, a monthly speed check in PageSpeed Insights, so a heavy new photo doesn&apos;t quietly
+          undo the work from launch.
         </li>
+      </ul>
+
+      <h2>Plans</h2>
+      <p>Both plans are month to month, and you can cancel any time.</p>
+      <h3>Basic: $75 CAD a month</h3>
+      <ul>
+        <li>Software and security updates.</li>
+        <li>Backups.</li>
+        <li>Uptime monitoring.</li>
+        <li>Up to 30 minutes of content edits a month.</li>
+        <li>A reply within 2 business days.</li>
+      </ul>
+      <h3>Standard: $150 CAD a month</h3>
+      <ul>
+        <li>Everything in Basic.</li>
+        <li>Up to 2 hours of content edits a month.</li>
+        <li>A monthly speed check.</li>
+        <li>A reply within 1 business day.</li>
       </ul>
 
       <h2>How an edit reaches the site</h2>
