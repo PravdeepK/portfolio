@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { JsonLd } from "./JsonLd";
-import { Breadcrumb, RelatedServices, ReviewButton, ReviewCta } from "./parts";
-import { HOME_CRUMB, SERVICES_CRUMB, serviceJsonLd, servicePages, servicePath } from "./site";
+import { Breadcrumb, RelatedServices, ReviewButton, ReviewCta, SectionHead } from "./parts";
+import { HOME_CRUMB, SERVICES_CRUMB, serviceJsonLd, servicePages, servicePath, type Faq } from "./site";
 
-/** Everything a service subpage has around its copy: trail, heading, related links, review panel, structured data. */
+/** Everything a service subpage has around its copy: trail, heading, FAQ, related links, review panel, structured data. */
 export function ServiceShell({
   slug,
   title,
   description,
   heading,
   lead,
+  faqs,
   children,
 }: {
   slug: string;
@@ -18,6 +19,8 @@ export function ServiceShell({
   description: string;
   heading: string;
   lead: React.ReactNode;
+  /** Rendered as <details> and as FAQPage JSON-LD from this one list. */
+  faqs?: Faq[];
   children: React.ReactNode;
 }) {
   const page = servicePages.find((p) => p.slug === slug)!;
@@ -42,10 +45,26 @@ export function ServiceShell({
         <article className="panel notch prose">{children}</article>
       </div>
 
-      <RelatedServices current={slug} index="01" />
-      <ReviewCta index="02" />
+      {faqs && (
+        <section className="section" id="faq" aria-labelledby="faq-title">
+          <SectionHead index="01" title="Questions owners ask" id="faq-title" />
+          <div className="lift">
+            <div className="panel notch svc-faq">
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
-      <JsonLd data={serviceJsonLd({ path, title, name: page.name, description })} />
+      <RelatedServices current={slug} index={faqs ? "02" : "01"} />
+      <ReviewCta index={faqs ? "03" : "02"} />
+
+      <JsonLd data={serviceJsonLd({ path, title, name: page.name, description, faqs })} />
     </main>
   );
 }
