@@ -378,6 +378,12 @@ export function mountRoom(root: HTMLElement): () => void {
       if (night) for (let yy = 44 - h; yy < 41; yy += 3) for (let xx = x + 1; xx < x + w - 1; xx += 2) if (r() < 0.2) px(c, xx, yy, 1, 1, pal.litDim);
       x += w;
     }
+    // CN Tower
+    px(c, 32, 12, 2, 30, pal.tower);
+    px(c, 30, 20, 6, 3, pal.tower);
+    px(c, 31, 16, 4, 1, pal.tower);
+    px(c, 32, 4, 1, 8, pal.tower);
+    px(c, 31, 36, 4, 6, pal.tower);
     r = rng(11);
     x = -2;
     while (x < 50) {
