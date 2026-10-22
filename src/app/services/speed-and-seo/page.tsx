@@ -78,13 +78,21 @@ export default function SpeedAndSeoPage() {
         that gives Google your business name, service area and contact details directly.
       </p>
 
-      <h2>What you get</h2>
+      <h2>The speed and SEO tune-up</h2>
       <p>
-        I measure your site in PageSpeed Insights before I touch anything, fix what&apos;s slowing it down, then
-        measure again so you can compare the two. You also get a short list of anything I couldn&apos;t fix without a
-        rebuild. If that list is long, a <Link href={servicePath("website-redesign")}>website redesign</Link> may cost less
-        than patching.
-        {/* TODO: price or scope for a standalone speed and SEO pass */}
+        On its own, this is a fixed-price tune-up starting at $750 CAD. It&apos;s also part of every{" "}
+        <Link href={servicePath("website-redesign")}>website redesign</Link>. The tune-up covers:
+      </p>
+      <ul>
+        <li>A PageSpeed Insights audit on mobile and desktop.</li>
+        <li>Fixing what slows the site down.</li>
+        <li>The local SEO basics above.</li>
+        <li>Setting up Google Search Console.</li>
+        <li>A re-test, with a short before-and-after report.</li>
+      </ul>
+      <p>
+        You also get a short list of anything I couldn&apos;t fix without a rebuild. If that list is long, a redesign may
+        cost less than patching.
       </p>
     </ServiceShell>
   );
