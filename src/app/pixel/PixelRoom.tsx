@@ -67,9 +67,9 @@ export function PixelRoom() {
         </div>
 
         <section className="board notch" data-room="board" aria-labelledby="board-title" hidden>
-          <h2 id="board-title">
+          <p className="board__title" id="board-title">
             Snake leaderboard <span>Top 10, best score per player</span>
-          </h2>
+          </p>
           <ol data-room="board-list" />
           <p className="board__empty" data-room="board-empty">
             Loading scores&hellip;
@@ -79,20 +79,24 @@ export function PixelRoom() {
 
       <div className="pad" data-room="pad" role="group" aria-label="Touch controls">
         <div className="pad__dpad">
-          <button type="button" data-dir="f" aria-label="Walk toward the wall, or steer up">
-            &#9650;
+          <button type="button" data-dir="f">
+            <span aria-hidden="true">&#9650;</span>
+            <span className="sr-only">Walk toward the wall, or steer up</span>
           </button>
-          <button type="button" data-dir="l" aria-label="Walk left, or steer left">
-            &#9664;
+          <button type="button" data-dir="l">
+            <span aria-hidden="true">&#9664;</span>
+            <span className="sr-only">Walk left, or steer left</span>
           </button>
-          <button type="button" data-dir="r" aria-label="Walk right, or steer right">
-            &#9654;
+          <button type="button" data-dir="r">
+            <span aria-hidden="true">&#9654;</span>
+            <span className="sr-only">Walk right, or steer right</span>
           </button>
-          <button type="button" data-dir="b" aria-label="Walk away from the wall, or steer down">
-            &#9660;
+          <button type="button" data-dir="b">
+            <span aria-hidden="true">&#9660;</span>
+            <span className="sr-only">Walk away from the wall, or steer down</span>
           </button>
         </div>
-        <button type="button" className="pad__use" data-room="use" aria-label="Use">
+        <button type="button" className="pad__use" data-room="use">
           Use
         </button>
       </div>
