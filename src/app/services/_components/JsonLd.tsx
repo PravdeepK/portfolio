@@ -1,4 +1,4 @@
-/** Same escaping as the root layout: a "<" in the data can't close the script tag. */
+/** Same escaping as the homepage: a "<" in the data can't close the script tag. */
 export function JsonLd({ data }: { data: object }) {
   return (
     <script

@@ -148,7 +148,8 @@ const jsonLd = {
       },
       serviceType: servicePages.map((page) => page.name),
       sameAs: [LINKEDIN, GITHUB],
-      founder: { "@id": PERSON_ID },
+      // Named inline: the full Person node is on the homepage only.
+      founder: { "@type": "Person", "@id": PERSON_ID, name: "Pravdeep Kullar", url: SITE },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Website services",

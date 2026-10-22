@@ -29,9 +29,87 @@ export const metadata: Metadata = {
 /** Build time, so the date moves whenever the content does. */
 const BUILT = new Date().toISOString();
 
-/** The homepage as a ProfilePage about the Person in the layout, with the projects as its parts. */
-const jsonLd = {
-  "@context": "https://schema.org",
+const HUMBER = {
+  "@type": "CollegeOrUniversity",
+  name: "Humber Polytechnic",
+  url: "https://humber.ca",
+};
+
+/** The Person behind the site. Homepage only, so the services pages don't carry the full profile. */
+const person = {
+  "@type": "Person",
+  "@id": PERSON_ID,
+  name: NAME,
+  givenName: "Pravdeep",
+  familyName: "Kullar",
+  url: SITE,
+  email: `mailto:${EMAIL}`,
+  jobTitle: "Forward Deployed Engineer",
+  description: DESCRIPTION,
+  image: `${SITE}${OG_IMAGE.url}`,
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Ontario",
+    addressCountry: "CA",
+  },
+  worksFor: { "@type": "Organization", name: "Nx Growth Partners" },
+  hasOccupation: [
+    {
+      "@type": "Occupation",
+      name: "Forward Deployed Engineer",
+      occupationLocation: { "@type": "Country", name: "Canada" },
+    },
+    {
+      "@type": "Occupation",
+      name: "Full-stack developer",
+      occupationLocation: { "@type": "Country", name: "Canada" },
+    },
+  ],
+  alumniOf: HUMBER,
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Graduate Certificate, Artificial Intelligence with Machine Learning",
+      credentialCategory: "certificate",
+      recognizedBy: HUMBER,
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Computer Programming Diploma",
+      credentialCategory: "diploma",
+      recognizedBy: HUMBER,
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Meta Front-End Developer",
+      credentialCategory: "certification",
+      recognizedBy: { "@type": "Organization", name: "Meta" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Meta UI/UX Design",
+      credentialCategory: "certification",
+      recognizedBy: { "@type": "Organization", name: "Meta" },
+    },
+  ],
+  knowsAbout: skillGroups.flatMap((group) => group.items),
+  // TODO: add the Google Business Profile URL once the profile is live.
+  sameAs: [GITHUB, LINKEDIN],
+};
+
+const website = {
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  url: SITE,
+  name: NAME,
+  alternateName: ["builtbyprav", "Built by Prav"],
+  description: DESCRIPTION,
+  inLanguage: "en-CA",
+  publisher: { "@id": PERSON_ID },
+};
+
+/** The homepage as a ProfilePage about the Person, with the projects as its parts. */
+const profilePage = {
   "@type": "ProfilePage",
   "@id": `${SITE}/#page`,
   url: SITE,
@@ -66,6 +144,11 @@ const jsonLd = {
       },
     })),
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [person, website, profilePage],
 };
 
 const coursework = [

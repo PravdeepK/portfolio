@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Pixelify_Sans, Silkscreen } from "next/font/google";
 import "./globals.css";
-import { DESCRIPTION, EMAIL, GITHUB, LINKEDIN, NAME, OG_IMAGE, PERSON_ID, SITE, TITLE, WEBSITE_ID } from "./site";
-import { skillGroups } from "./skills";
+import { DESCRIPTION, NAME, OG_IMAGE, SITE, TITLE } from "./site";
 
 const display = Pixelify_Sans({
   variable: "--font-display",
@@ -27,12 +26,6 @@ const mono = IBM_Plex_Mono({
 
 /** Applies a saved Lights on/off choice before first paint, so the page doesn't flash the wrong theme. */
 const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
-
-const HUMBER = {
-  "@type": "CollegeOrUniversity",
-  name: "Humber Polytechnic",
-  url: "https://humber.ca",
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -93,83 +86,6 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-/** Person plus WebSite, so search engines can attach the name to the site. Pages add their own nodes by @id. */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: NAME,
-      givenName: "Pravdeep",
-      familyName: "Kullar",
-      url: SITE,
-      email: `mailto:${EMAIL}`,
-      jobTitle: "Forward Deployed Engineer",
-      description: DESCRIPTION,
-      image: `${SITE}${OG_IMAGE.url}`,
-      address: {
-        "@type": "PostalAddress",
-        addressRegion: "Ontario",
-        addressCountry: "CA",
-      },
-      worksFor: { "@type": "Organization", name: "Nx Growth Partners" },
-      hasOccupation: [
-        {
-          "@type": "Occupation",
-          name: "Forward Deployed Engineer",
-          occupationLocation: { "@type": "Country", name: "Canada" },
-        },
-        {
-          "@type": "Occupation",
-          name: "Full-stack developer",
-          occupationLocation: { "@type": "Country", name: "Canada" },
-        },
-      ],
-      alumniOf: HUMBER,
-      hasCredential: [
-        {
-          "@type": "EducationalOccupationalCredential",
-          name: "Graduate Certificate, Artificial Intelligence with Machine Learning",
-          credentialCategory: "certificate",
-          recognizedBy: HUMBER,
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          name: "Computer Programming Diploma",
-          credentialCategory: "diploma",
-          recognizedBy: HUMBER,
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          name: "Meta Front-End Developer",
-          credentialCategory: "certification",
-          recognizedBy: { "@type": "Organization", name: "Meta" },
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          name: "Meta UI/UX Design",
-          credentialCategory: "certification",
-          recognizedBy: { "@type": "Organization", name: "Meta" },
-        },
-      ],
-      knowsAbout: skillGroups.flatMap((group) => group.items),
-      // TODO: add the Google Business Profile URL once the profile is live.
-      sameAs: [GITHUB, LINKEDIN],
-    },
-    {
-      "@type": "WebSite",
-      "@id": WEBSITE_ID,
-      url: SITE,
-      name: NAME,
-      alternateName: ["builtbyprav", "Built by Prav"],
-      description: DESCRIPTION,
-      inLanguage: "en-CA",
-      publisher: { "@id": PERSON_ID },
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -186,12 +102,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
       </body>
     </html>
   );
