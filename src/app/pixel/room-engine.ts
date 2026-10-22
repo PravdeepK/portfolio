@@ -47,7 +47,7 @@ type Hotspot = {
 
 const HOTSPOTS: Hotspot[] = [
   { id: "door", name: "Front door", short: "door", button: "Door: contact", rect: [3, 65, 28, 46], x0: 6, x1: 28, y0: 66, y1: 112,
-    text: "Got something you want built? I'm open to full-time front-end and full-stack roles, and I take on freelance website projects for small businesses. Email is the fastest way to reach me.",
+    text: "Got something you want built? I'm open to full-time front-end and full-stack roles, and I move small businesses off WordPress onto fast custom sites. Email is the fastest way to reach me.",
     email: EMAIL, scroll: { label: "Open contact", target: "contact" } },
   { id: "shelf", name: "Bookshelf", short: "bookshelf", button: "Bookshelf: skills", rect: [33, 52, 28, 59], x0: 34, x1: 60, y0: 52, y1: 112,
     text: "React, Next.js, TypeScript and Node.js on the product side. Python, PyTorch and scikit-learn on the ML side. The Claude API, RAG and AI agents in between.",

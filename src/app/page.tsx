@@ -226,7 +226,10 @@ export default function Home() {
               platform for private practices and medspas. I hold a graduate certificate in AI with machine learning
               from Humber.
             </p>
-            <p className="intro__context">Also taking on freelance website projects for small businesses.</p>
+            <p className="intro__context">
+              I also move small businesses off slow, high-maintenance WordPress sites onto fast custom sites that
+              don&apos;t need plugin updates.
+            </p>
             <div className="intro__links">
               <a className="btn btn--solid" href="#work">
                 Selected work &darr;
@@ -237,8 +240,8 @@ export default function Home() {
               <a className="btn" href={LINKEDIN} target="_blank" rel="me noreferrer">
                 LinkedIn &#8599;
               </a>
-              <Link className="btn" href="/services">
-                Website services &rarr;
+              <Link className="btn" href="/services/wordpress-migration">
+                Move off WordPress &rarr;
               </Link>
             </div>
           </div>
@@ -441,8 +444,8 @@ export default function Home() {
                 Got something you want <em>built?</em>
               </p>
               <p className="contact__copy">
-                I&apos;m open to full-time front-end and full-stack roles, and I take on freelance website projects
-                for small businesses. If the idea isn&apos;t figured out yet that&apos;s fine, I&apos;d rather hear it
+                I&apos;m open to full-time front-end and full-stack roles, and I move small businesses off WordPress
+                onto fast custom sites. If the idea isn&apos;t figured out yet that&apos;s fine, I&apos;d rather hear it
                 early. Email is the fastest way to reach me.
               </p>
               <div className="contact__actions">
