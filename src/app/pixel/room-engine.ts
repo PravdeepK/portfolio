@@ -16,6 +16,7 @@ import {
   GRID_H as GH, GRID_W as GW, cleanInitials, isAllowedInitials, isPlausibleScore,
   type BoardRow,
 } from "@/lib/snake";
+import { EMAIL } from "../site";
 
 const W = 256;
 const H = 144;
@@ -46,8 +47,8 @@ type Hotspot = {
 
 const HOTSPOTS: Hotspot[] = [
   { id: "door", name: "Front door", short: "door", button: "Door: contact", rect: [3, 65, 28, 46], x0: 6, x1: 28, y0: 66, y1: 112,
-    text: "Got something you want built? I'm open to front-end and full-stack roles, and I take freelance work. Email is the fastest way to reach me.",
-    email: "pravdeepkk@gmail.com", scroll: { label: "Open contact", target: "contact" } },
+    text: "Got something you want built? I'm open to full-time front-end and full-stack roles, and I take on freelance website projects for small businesses. Email is the fastest way to reach me.",
+    email: EMAIL, scroll: { label: "Open contact", target: "contact" } },
   { id: "shelf", name: "Bookshelf", short: "bookshelf", button: "Bookshelf: skills", rect: [33, 52, 28, 59], x0: 34, x1: 60, y0: 52, y1: 112,
     text: "React, Next.js, TypeScript and Node.js on the product side. Python, PyTorch and scikit-learn on the ML side. The Claude API, RAG and AI agents in between.",
     scroll: { label: "Open skills", target: "skills" } },
@@ -55,7 +56,7 @@ const HOTSPOTS: Hotspot[] = [
     text: "A computer programming diploma from Humber, 2023 to 2025, then a graduate certificate in AI with machine learning in 2026. The two small frames are my Meta front-end and UI/UX certifications.",
     scroll: { label: "Open where I've been", target: "history" } },
   { id: "window", name: "Window", short: "window", button: "Window: Ontario", rect: [84, 15, 80, 60], x0: 92, x1: 156, y0: 18, y1: 74,
-    text: "Ontario, Canada. The tall one is the CN Tower. It's day out there in light mode and night in dark mode, and the Lights button in the top bar switches it." },
+    text: "Ontario, Canada. It's day out there in light mode and night in dark mode, and the Lights button in the top bar switches it." },
   { id: "poster", name: "Poster", short: "poster", button: "Poster: FakeWordle", rect: [160, 28, 26, 31], x0: 160, x1: 185, y0: 28, y1: 58,
     text: "FakeWordle. It's Wordle, except you race someone else in real time. You open a room, send them the code, and a chat runs alongside.",
     link: { label: "Play a game", href: "https://www.fakewordle.com" }, scroll: { label: "Read about it", target: "project-07" } },
@@ -377,12 +378,6 @@ export function mountRoom(root: HTMLElement): () => void {
       if (night) for (let yy = 44 - h; yy < 41; yy += 3) for (let xx = x + 1; xx < x + w - 1; xx += 2) if (r() < 0.2) px(c, xx, yy, 1, 1, pal.litDim);
       x += w;
     }
-    // CN Tower
-    px(c, 32, 12, 2, 30, pal.tower);
-    px(c, 30, 20, 6, 3, pal.tower);
-    px(c, 31, 16, 4, 1, pal.tower);
-    px(c, 32, 4, 1, 8, pal.tower);
-    px(c, 31, 36, 4, 6, pal.tower);
     r = rng(11);
     x = -2;
     while (x < 50) {
@@ -556,7 +551,7 @@ export function mountRoom(root: HTMLElement): () => void {
     }
     if (h.egg) {
       const b = smallBtn("snake.exe", "btn--egg");
-      b.setAttribute("aria-label", "Play snake on the monitor");
+      b.setAttribute("aria-label", "snake.exe, play snake on the monitor");
       b.addEventListener("click", startSnake);
       dlgFoot.append(b);
     }
