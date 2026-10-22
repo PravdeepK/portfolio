@@ -81,7 +81,7 @@ const faqs = [
   {
     question: "Can I edit the site myself after launch?",
     answer:
-      "If you want to, tell me during the free review and I'll plan the build around it. Some owners would rather not learn an editor at all. Rosehill sends changes through a shared Notion board and I make them, which is faster for both of us but means even a new phone number goes through me.",
+      "Yes, if you want to. I can set the site up so you make edits yourself. That setup is a paid add-on, quoted separately, so tell me during the free review and I'll plan the build around it. Some owners would rather not learn an editor at all. Rosehill sends changes through a shared Notion board and I make them, which is faster for both of us but means even a new phone number goes through me.",
   },
   {
     question: "Do I have to move off WordPress?",

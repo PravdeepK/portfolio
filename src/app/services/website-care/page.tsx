@@ -64,7 +64,8 @@ export default function WebsiteCarePage() {
       </figure>
       <p>
         The trade-off is real: even a new phone number has to come through me. If you&apos;d rather make some edits
-        yourself, say so before the build and we&apos;ll plan for it.
+        yourself, I can set the site up so you can. That setup is a paid add-on, quoted separately, so say so before
+        the build and we&apos;ll plan for it.
       </p>
 
       <h2>Hosting and domains</h2>
