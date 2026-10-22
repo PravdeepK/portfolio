@@ -31,7 +31,7 @@ export const metadata = pageMetadata({ path: PATH, title: TITLE, description: DE
 const problems = [
   {
     label: "Endless plugin updates",
-    body: "A WordPress site has a core, a theme and a handful of plugins, and each one needs updates. Most WordPress security holes are found in plugins, and an update that breaks the layout is common enough that some owners stop updating at all.",
+    body: "A WordPress site has a core, a theme and a handful of plugins, and each one needs updates. Most reported WordPress vulnerabilities are in plugins. An update that breaks the layout is common enough that some owners stop updating at all.",
   },
   {
     label: "Slow on phones",
@@ -80,7 +80,7 @@ const faqs = [
   {
     question: "How much does a website cost?",
     answer:
-      "Moving off WordPress or a redesign starts at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up on its own starts at $750 CAD.",
+      "WordPress migrations and redesigns start at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD.",
   },
   {
     question: "How long does it take?",
@@ -132,7 +132,7 @@ const featured = [
   {
     number: "05",
     summary:
-      "Rising Sun is a WASC-accredited Montessori school teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation follows the four programs, with campus and gallery pages for parents who want to see a classroom before they visit one. It's built on WordPress with Elementor.",
+      "Rising Sun is a WASC-accredited Montessori school teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation follows the four programs, with campus and gallery pages for parents who want to see a classroom before they visit one. It's built on WordPress and Elementor, so I know these sites inside out before I move one.",
     noteLabel: "Trade-off",
     note: "Applications hand off to Transparent Classroom, which the school already runs, and tours are booked by email. Building either on the site would have meant keeping a second copy of records the school already has.",
   },
