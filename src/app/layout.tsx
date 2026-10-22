@@ -70,8 +70,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // TODO: replace with the Search Console HTML tag token.
-  verification: { google: "TODO" },
+  // TODO: add `verification: { google: "<token>" }` here with the Search Console HTML tag token.
   category: "technology",
 };
 

@@ -93,7 +93,6 @@ const person = {
     },
   ],
   knowsAbout: skillGroups.flatMap((group) => group.items),
-  // TODO: add the Google Business Profile URL once the profile is live.
   sameAs: [GITHUB, LINKEDIN],
 };
 
