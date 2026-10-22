@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { mountRoom } from "./room-engine";
+import { ArrowKeys } from "./ArrowKeys";
 
 /** The hero: the walkable room, its status bar, the snake leaderboard and the touch pad. */
 export function PixelRoom() {
@@ -105,8 +106,7 @@ export function PixelRoom() {
         <kbd>W</kbd>
         <kbd>A</kbd>
         <kbd>S</kbd>
-        <kbd>D</kbd> to walk, or the arrow keys once you&apos;ve clicked the room. Press <kbd>E</kbd> next to
-        something to use it, or click it.
+        <kbd>D</kbd> to walk, or <ArrowKeys /> once you&apos;ve clicked the room. Press <kbd>E</kbd> next to something to use it, or click it.
       </p>
       <p className="controls controls--touch">
         Tap the floor to walk there, or tap something to walk over and use it. The pad works too.

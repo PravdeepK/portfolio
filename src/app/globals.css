@@ -812,6 +812,15 @@ kbd {
   text-align: center;
 }
 
+/* Same height as the Silkscreen capitals, with square pixels. */
+.kbd__arrow {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  shape-rendering: crispEdges;
+  vertical-align: 0;
+}
+
 .objects {
   display: flex;
   flex-wrap: wrap;
