@@ -116,9 +116,6 @@ const featured = [
       "Rising Sun is a WASC-accredited Montessori school teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation follows the four programs, with campus and gallery pages for parents who want to see a classroom before they visit one. It's built on WordPress with Elementor.",
     noteLabel: "Trade-off",
     note: "Applications hand off to Transparent Classroom, which the school already runs, and tours are booked by email. Building either on the site would have meant keeping a second copy of records the school already has.",
-    // TODO: verified Rising Sun results (PageSpeed scores, enquiry numbers)
-    results: [],
-    resultsSource: "",
   },
 ];
 
@@ -294,7 +291,7 @@ export default function ServicesPage() {
                     <div>
                       <h3>{project.title}</h3>
                       <p className="quest__desc">{item.summary}</p>
-                      {item.results.length > 0 && (
+                      {item.results && (
                         <>
                           <ul className="svc-results" aria-label={`${project.title} results`}>
                             {item.results.map((result) => (
@@ -344,8 +341,12 @@ export default function ServicesPage() {
       </section>
 
       <section className="section" id="process" aria-labelledby="process-title">
-        <SectionHead index="04" title="How it works" id="process-title" />
-        {/* TODO: typical timeline from free review to launch */}
+        <SectionHead
+          index="04"
+          title="How it works"
+          id="process-title"
+          note="Usually 2 to 4 weeks from the free review to launch, depending on how quickly the content and photos come in."
+        />
         <ol className="svc-steps">
           {steps.map((step) => (
             <li className="lift" key={step.title}>
@@ -364,8 +365,7 @@ export default function ServicesPage() {
           <div className="panel notch svc-price">
             <p className="svc-price__amount">
               <small>Website redesigns</small>
-              {/* TODO: starting price */}
-              Starting at $[TODO]
+              Starting at $2,500 CAD
             </p>
             <div>
               <p>Every site is quoted after the free review, because the price depends on a few things:</p>
@@ -375,7 +375,10 @@ export default function ServicesPage() {
                 <li>Whether content is moving off WordPress or another site builder</li>
                 <li>Extras like online booking, quote forms or a blog</li>
               </ul>
-              {/* TODO: confirm quote and payment terms (deposit, milestones) */}
+              <p>
+                The final price depends on the page count and features, and the quote is fixed before work starts.
+                Payment is a 50% deposit to start and the other 50% at launch.
+              </p>
             </div>
           </div>
         </div>
