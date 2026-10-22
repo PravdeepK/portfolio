@@ -299,7 +299,7 @@ const speed: Scene = {
 /* ---------- 04 Rosehill: how an edit reaches the site ---------- */
 
 const workflow: Scene = {
-  label: "An edit goes from the owner to a Notion board, I make the change and deploy it. A CMS for the owner was never built.",
+  label: "An edit goes from the owner to a Notion board, I make the change and deploy it. A CMS for the owner wasn't needed here.",
   still: 6.5,
   make: () => (c, k, t) => {
     px(c, 0, 0, FW, FH, k.bg);
@@ -337,7 +337,89 @@ const workflow: Scene = {
     line(c, 40, 68, 48, 76, k.bad);
     line(c, 48, 68, 40, 76, k.bad);
     text3(c, "A CMS FOR THE OWNER", 56, 70, k.soft);
-    textC(c, "NEVER BUILT", 96, 89, k.bad);
+    textC(c, "NOT NEEDED HERE", 96, 89, k.bad);
+  },
+};
+
+/* ---------- 04 Rosehill: the 2013 site and the new one ---------- */
+
+const SAD = [".#####.", "#.....#", "#.#.#.#", "#.....#", "#..#..#", "#.#.#.#", ".#####."];
+const HAPPY = [".#####.", "#.....#", "#.#.#.#", "#.....#", "#.#.#.#", "#..#..#", ".#####."];
+
+const rosehill: Scene = {
+  label: "The Rosehill Design Build site in 2013 and now. The old site spins on a blank screen, then shows a broken image and a Site crashed error, and a visitor says: Boo! This old one sucks! The new site loads straight away, and a visitor says: Wow! This new site by Prav is so good!",
+  still: 7,
+  make: () => (c, k, t) => {
+    px(c, 0, 0, FW, FH, k.bg);
+    const T = t % 8.5;
+    const pop = (at: number) => T >= at;
+
+    const browser = (x: number, tag: string, col: string) => {
+      textC(c, tag, x + 44, 1, col);
+      frame(c, x, 8, 88, 50, k.ink);
+      px(c, x + 1, 9, 86, 5, k.fill);
+      px(c, x + 3, 11, 1, 1, k.bad);
+      px(c, x + 6, 11, 1, 1, k.warm);
+      px(c, x + 9, 11, 1, 1, k.good);
+    };
+    browser(4, "2013", k.soft);
+    browser(100, "NOW", k.good);
+
+    // 2013: a spinner on a blank page, then a layout nobody finished
+    let ox = 6;
+    const oy = 16;
+    if (T < 3) {
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2;
+        const on = (Math.floor(T * 8) % 8) === i;
+        px(c, R(48 + Math.cos(a) * 6), R(34 + Math.sin(a) * 6), 1, 1, on ? k.ink : k.faint);
+      }
+      if (Math.floor(T * 2) % 2 === 0) textC(c, "LOADING", 48, 44, k.faint);
+    } else {
+      px(c, ox, oy, 58, 4, k.faint);
+      frame(c, ox + 2, oy + 7, 30, 20, k.bad);
+      line(c, ox + 3, oy + 8, ox + 30, oy + 25, k.bad);
+      line(c, ox + 30, oy + 8, ox + 3, oy + 25, k.bad);
+      [40, 22, 46, 12].forEach((w, i) => px(c, ox + (i === 2 ? 26 : 36), oy + 8 + i * 4, w, 1, k.soft));
+      frame(c, ox + 32, oy + 26, 51, 12, k.bad);
+      textC(c, "SITE CRASHED", ox + 57, oy + 30, k.bad);
+    }
+
+    // now: the page is there almost straight away
+    ox = 102;
+    if (pop(0.4)) {
+      px(c, ox, oy, 12, 3, k.accent);
+      [0, 1, 2].forEach((i) => px(c, ox + 52 + i * 10, oy + 1, 7, 1, k.soft));
+    }
+    if (pop(0.6)) {
+      px(c, ox, oy + 6, 84, 16, k.fill);
+      px(c, ox + 4, oy + 9, 40, 2, k.ink);
+      px(c, ox + 4, oy + 13, 28, 2, k.ink);
+      px(c, ox + 56, oy + 8, 24, 12, k.accent);
+    }
+    if (pop(0.8)) px(c, ox + 4, oy + 17, 20, 4, k.warm);
+    [0, 1, 2].forEach((i) => {
+      if (!pop(0.9 + i * 0.1)) return;
+      frame(c, ox + i * 29, oy + 26, 26, 13, k.faint);
+      px(c, ox + i * 29 + 3, oy + 29, 14, 1, k.soft);
+      px(c, ox + i * 29 + 3, oy + 32, 18, 1, k.faint);
+      px(c, ox + i * 29 + 3, oy + 35, 10, 1, k.faint);
+    });
+
+    // the visitors
+    const visitor = (cx: number, lines: string[], col: string, face: string[], at: number) => {
+      sprite(c, face, cx - 3, 87, k.ink);
+      px(c, cx - 3, 95, 7, 1, k.soft);
+      px(c, cx - 4, 96, 9, 4, k.soft);
+      if (!pop(at)) return;
+      px(c, cx - 42, 63, 84, 18, k.bg);
+      frame(c, cx - 42, 63, 84, 18, k.ink);
+      px(c, cx - 1, 81, 3, 1, k.ink);
+      px(c, cx, 82, 1, 2, k.ink);
+      lines.forEach((s, i) => textC(c, s, cx, 66 + i * 7, col));
+    };
+    visitor(48, ["BOO! THIS OLD", "ONE SUCKS!"], k.bad, SAD, 3.4);
+    visitor(144, ["WOW! THIS NEW SITE", "BY PRAV IS SO GOOD!"], k.good, HAPPY, 4.6);
   },
 };
 
@@ -730,5 +812,5 @@ const verify: Scene = {
   },
 };
 
-export const SCENES = { fde, stream, speed, workflow, enroll, commerce, socket, timetable, cineplex, widgets, models, verify };
+export const SCENES = { fde, stream, speed, workflow, rosehill, enroll, commerce, socket, timetable, cineplex, widgets, models, verify };
 export type SceneKey = keyof typeof SCENES;

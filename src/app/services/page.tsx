@@ -119,9 +119,9 @@ const featured = [
   {
     number: "04",
     summary:
-      "Rosehill is a design-build contractor in Ontario. Their old site was a template, and on a phone it opened on a white screen while the hero video loaded. I rebuilt it as a Next.js site on Vercel, compressed the video with ffmpeg, set up the domain and DNS, and added the tags that make a shared link show a proper preview.",
-    noteLabel: "Still unfinished",
-    note: "The hero video is still the slowest thing on the page, even after the compression and the R2 fallback.",
+      "Rosehill is a design-build contractor in Ontario. Their old site was built in 2013 and looked unfinished, and on a phone it never loaded at all. I fixed that, and together we built a new site on Next.js and Vercel. We edited a new hero video together, which I compressed with ffmpeg, and I set up the domain and DNS and the tags that make a shared link show a proper preview. I'm still working on it today, because I believe in getting it perfect.",
+    noteLabel: "Still improving",
+    note: "The hero video is the biggest file on the page, so it loads after the text and photos and nothing waits on it. I'm still working on making it smaller.",
     results: [
       { value: "90", label: "PageSpeed, mobile" },
       { value: "100", label: "PageSpeed, desktop" },

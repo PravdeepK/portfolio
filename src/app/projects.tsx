@@ -83,12 +83,12 @@ export const projects: Project[] = [
     title: "Rosehill Design Build",
     category: "Client work",
     description:
-      "Rosehill is a design-build contractor in Ontario. Their old site was a template, and on a phone it opened on a white screen because of the hero video. I rebuilt it as a Next.js marketing site on Vercel and handled the domain and DNS setup. The video got ffmpeg compression and a Cloudflare R2 fallback, and it's still the slowest thing on the page. I added OG tags so sharing a link stopped looking broken, plus GTM and cookie consent, and ran the feedback rounds with the client's COO.",
+      "Rosehill is a design-build contractor in Ontario. Their old site was built in 2013 and looked unfinished, and on a phone it never loaded at all. I fixed that, and together we built a new Next.js marketing site on Vercel, with me handling the domain and DNS setup. We edited a new hero video together. It got ffmpeg compression and a Cloudflare R2 fallback, and it loads after the rest of the page so nothing waits on it. I added OG tags so sharing a link stopped looking broken, plus GTM and cookie consent, and ran the feedback rounds with the client's COO. I'm still working on it today, because I believe in getting it perfect.",
     detail:
       "The owner had no interest in learning a CMS, so changes came to me through a Notion board and I made them myself. That was faster for both of us, and it means a new phone number still has to come through me.",
     noteLabel: "Trade-off",
-    figure: <PixelFigure scene="workflow" />,
-    caption: "Fig. 04 · How an edit reaches the site",
+    figure: <PixelFigure scene="rosehill" />,
+    caption: "Fig. 04 · The 2013 site and the new one",
     meta: [
       "Next.js",
       "Vercel",

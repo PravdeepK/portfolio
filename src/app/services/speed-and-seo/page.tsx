@@ -43,10 +43,10 @@ export default function SpeedAndSeoPage() {
       <h2>What usually slows a small-business site</h2>
       <p>
         On the sites I&apos;ve worked on, the cause is rarely subtle. A hero video in front of everything else is the
-        most common one. On Rosehill Design Build&apos;s old site, phones showed a white screen while the video loaded.
-        I compressed it with ffmpeg, added a Cloudflare R2 fallback for delivering it, and rebuilt the site in Next.js.
-        It now scores 90 on mobile and 100 on desktop in PageSpeed Insights (August 2026), and the video is still the
-        slowest thing on the page.
+        most common one. Rosehill Design Build&apos;s old site never finished loading on a phone. On the new Next.js
+        site, the hero video is compressed with ffmpeg, served with a Cloudflare R2 fallback, and loads after the rest
+        of the page, so nothing waits on it. It scores 90 on mobile and 100 on desktop in PageSpeed Insights (August
+        2026).
       </p>
       <figure className="plate">
         <PixelFigure scene="speed" />
