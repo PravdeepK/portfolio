@@ -1,0 +1,420 @@
+/* ---------------------------------------------------------------------------
+   Services pages only. Everything here builds on the tokens and panel classes
+   in globals.css; nothing in this file restyles a class the homepage uses.
+   --------------------------------------------------------------------------- */
+
+/* Breadcrumb ------------------------------------------------------------- */
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-label);
+  font-size: 12px;
+}
+
+.crumbs li {
+  color: var(--ink-soft);
+}
+
+.crumbs li + li::before {
+  padding-inline: 8px;
+  color: var(--warm);
+  content: "\203A";
+}
+
+.crumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: linear-gradient(var(--hi), var(--hi)) 0 100% / 0 3px no-repeat;
+}
+
+.crumbs a:hover {
+  color: var(--ink);
+  background-size: 100% 3px;
+}
+
+.crumbs [aria-current="page"] {
+  color: var(--ink);
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+.svc-hero {
+  margin-top: 28px;
+}
+
+.svc-hero h1 {
+  max-width: 20ch;
+}
+
+/* Subpage heading block. Same type as the homepage h1, one size down. */
+.svc-head {
+  margin-top: 28px;
+}
+
+.svc-head h1 {
+  max-width: 22ch;
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.svc-head__lead {
+  max-width: 60ch;
+  margin-top: 16px;
+  color: var(--ink-soft);
+}
+
+.svc-head .intro__links {
+  margin-top: 20px;
+}
+
+/* Long-form copy --------------------------------------------------------- */
+
+.svc-article {
+  margin-top: 40px;
+}
+
+.svc-article .prose {
+  gap: 14px;
+}
+
+.svc-article h2 {
+  margin-top: 18px;
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.svc-article h2:first-child {
+  margin-top: 0;
+}
+
+.svc-article h3 {
+  margin-top: 6px;
+  color: var(--accent);
+  font-family: var(--f-label);
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.svc-article ul {
+  display: grid;
+  gap: 6px;
+  max-width: 68ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+}
+
+.svc-article li::before {
+  color: var(--warm);
+  content: "\25B8\00a0";
+}
+
+.svc-article a,
+.svc-faq a {
+  color: var(--ink);
+  text-decoration: none;
+  background: linear-gradient(var(--hi), var(--hi)) 0 100% / 100% 3px no-repeat;
+}
+
+.svc-article a:hover {
+  color: var(--accent);
+}
+
+.svc-article .plate {
+  max-width: 34rem;
+  margin-block: 6px;
+}
+
+/* Service cards ---------------------------------------------------------- */
+
+.svc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  height: 100%;
+  padding: 18px 20px 20px;
+}
+
+.svc-card .label {
+  color: var(--warm);
+}
+
+.svc-card h3 {
+  font-family: var(--f-display);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* The heading link covers the whole card, so the card is one tap target. */
+.svc-card h3 a {
+  text-decoration: none;
+}
+
+.svc-card h3 a::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.svc-card h3 a::before {
+  color: var(--warm);
+  content: "\25B8\00a0";
+}
+
+.svc-card p {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.svc-card:has(a:hover) {
+  background: var(--panel-2);
+}
+
+.svc-card:has(a:focus-visible) {
+  outline: 3px dashed var(--accent);
+  outline-offset: -8px;
+}
+
+.svc-card h3 a:focus-visible {
+  outline: none;
+}
+
+/* Problem rows: the code column sits beside the text on wide screens. */
+@media (min-width: 821px) {
+  .svc-rows .rows__item {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 20px;
+  }
+}
+
+/* Featured results --------------------------------------------------------- */
+
+.svc-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc-results li {
+  display: grid;
+  gap: 2px;
+  min-width: 7.5rem;
+  padding: 8px 12px 7px;
+  border: 3px solid var(--good);
+  background: color-mix(in srgb, var(--good) 8%, var(--panel));
+}
+
+.svc-results strong {
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.svc-results span {
+  color: var(--ink-soft);
+  font-family: var(--f-label);
+  font-size: 11px;
+}
+
+.svc-results__source {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+/* Process ------------------------------------------------------------------ */
+
+.svc-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.svc-steps li {
+  counter-increment: step;
+}
+
+.svc-steps .panel {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  height: 100%;
+  padding: 16px 18px 18px;
+}
+
+.svc-steps h3::before {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--warm);
+  font-family: var(--f-label);
+  font-size: 12px;
+  content: "Step " counter(step, decimal-leading-zero);
+}
+
+.svc-steps h3 {
+  font-family: var(--f-display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.svc-steps p {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* Pricing ------------------------------------------------------------------ */
+
+.svc-price {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px 32px;
+  padding: 22px 24px 24px;
+}
+
+.svc-price__amount {
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.svc-price__amount small {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink-soft);
+  font-family: var(--f-label);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.svc-price p,
+.svc-price li {
+  color: var(--ink-soft);
+}
+
+.svc-price ul {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc-price li::before {
+  color: var(--warm);
+  content: "\25B8\00a0";
+}
+
+/* FAQ ---------------------------------------------------------------------- */
+
+.svc-faq {
+  padding: 4px 20px;
+}
+
+.svc-faq details {
+  border-bottom: 2px dotted var(--line-soft);
+}
+
+.svc-faq details:last-child {
+  border-bottom: 0;
+}
+
+.svc-faq summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-height: var(--tap);
+  padding: 14px 0;
+  font-family: var(--f-display);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  list-style: none;
+  cursor: pointer;
+}
+
+.svc-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.svc-faq summary::before {
+  flex: none;
+  width: 1.2em;
+  color: var(--warm);
+  font-family: var(--f-label);
+  font-size: 14px;
+  content: "+";
+}
+
+.svc-faq details[open] summary::before {
+  content: "\2212";
+}
+
+.svc-faq summary:hover {
+  color: var(--accent);
+}
+
+.svc-faq details p {
+  max-width: 68ch;
+  padding: 0 0 16px calc(1.2em + 10px);
+  color: var(--ink-soft);
+}
+
+/* Footer ------------------------------------------------------------------- */
+
+.svc-footer nav {
+  flex-basis: 100%;
+}
+
+/* Responsive --------------------------------------------------------------- */
+
+@media (max-width: 820px) {
+  .svc-price {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .svc-price,
+  .svc-card {
+    padding: 18px 16px 20px;
+  }
+
+  .svc-faq {
+    padding-inline: 16px;
+  }
+}
