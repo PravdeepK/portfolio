@@ -55,8 +55,9 @@ export default function WordPressMigrationPage() {
       <h3>Better Core Web Vitals</h3>
       <p>
         Core Web Vitals are the scores Google collects from real visitors on how fast your page loads, how quickly it
-        reacts to a tap, and whether it jumps around while loading. A lighter site usually does better on all three,
-        and I measure them before and after so you can compare.
+        reacts to a tap, and whether it jumps around while loading. A lighter site usually does better on all three.
+        Every migration includes the <Link href={servicePath("speed-and-seo")}>speed and SEO tune-up</Link>, so I
+        measure them before and after and you can compare.
       </p>
 
       <h2>Can I still edit my site?</h2>

@@ -54,7 +54,8 @@ export default function WebsiteRedesignPage() {
         I build most sites with Next.js and host them on Vercel, which serves pages from servers close to the visitor.
         Images are resized for each screen and compressed, fonts load without holding up the text, and anything heavy
         waits until the rest of the page is ready. The Rosehill Design Build site I rebuilt scores 90 on mobile and 100
-        on desktop in Google PageSpeed Insights, measured in August 2026.
+        on desktop in Google PageSpeed Insights, measured in August 2026. Every redesign includes the{" "}
+        <Link href={servicePath("speed-and-seo")}>speed and SEO tune-up</Link>, with a before-and-after report.
       </p>
       <h3>Keep what Google already knows about you</h3>
       <p>

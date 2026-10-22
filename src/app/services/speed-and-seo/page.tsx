@@ -80,7 +80,8 @@ export default function SpeedAndSeoPage() {
 
       <h2>The speed and SEO tune-up</h2>
       <p>
-        On its own, this is a fixed-price tune-up starting at $750 CAD. It&apos;s also part of every{" "}
+        On its own, this is a fixed-price tune-up starting at $750 CAD. It&apos;s also included in every{" "}
+        <Link href={servicePath("wordpress-migration")}>WordPress migration</Link> and{" "}
         <Link href={servicePath("website-redesign")}>website redesign</Link>. The tune-up covers:
       </p>
       <ul>
