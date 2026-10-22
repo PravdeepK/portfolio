@@ -22,7 +22,7 @@ import {
 } from "./_components/site";
 
 const PATH = "/services";
-const TITLE = "Website Redesign for Small Businesses in Ontario | Built by Prav";
+const TITLE = "Website Redesign for Ontario Small Businesses | Built by Prav";
 const DESCRIPTION =
   "Freelance web developer in Ontario. I redesign slow, outdated small-business websites into fast, mobile-friendly sites that win more calls. Free site review.";
 
