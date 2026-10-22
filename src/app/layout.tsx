@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Pixelify_Sans, Silkscreen } from "next/font/google";
 import "./globals.css";
-import { projects } from "./projects";
+import { DESCRIPTION, EMAIL, GITHUB, LINKEDIN, NAME, OG_IMAGE, PERSON_ID, SITE, TITLE, WEBSITE_ID } from "./site";
 import { skillGroups } from "./skills";
 
 const display = Pixelify_Sans({
@@ -28,27 +28,11 @@ const mono = IBM_Plex_Mono({
 /** Applies a saved Lights on/off choice before first paint, so the page doesn't flash the wrong theme. */
 const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
-const SITE = "https://www.builtbyprav.com";
-const NAME = "Pravdeep Kullar";
-const TITLE = "Pravdeep Kullar | Forward Deployed & Full-Stack Engineer";
-const DESCRIPTION =
-  "Pravdeep Kullar is a Forward Deployed Engineer and full-stack developer in Ontario, Canada. React, Next.js, TypeScript, Node.js, Python, RAG and AI agents.";
-const OG_IMAGE = {
-  url: "/og.png",
-  width: 1200,
-  height: 630,
-  type: "image/png",
-  alt: "Pravdeep Kullar, Forward Deployed Engineer and full-stack developer, Ontario, Canada, next to a pixel art room at night",
-};
-const GITHUB = "https://github.com/PravdeepK";
-const LINKEDIN = "https://www.linkedin.com/in/pravdeepk/";
 const HUMBER = {
   "@type": "CollegeOrUniversity",
   name: "Humber Polytechnic",
   url: "https://humber.ca",
 };
-/** Build time, so the date moves whenever the content does. */
-const BUILT = new Date().toISOString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -61,35 +45,13 @@ export const metadata: Metadata = {
   authors: [{ name: NAME, url: SITE }],
   creator: NAME,
   publisher: NAME,
-  keywords: [
-    "Pravdeep Kullar",
-    "forward deployed engineer",
-    "full-stack developer",
-    "full-stack developer Toronto",
-    "full-stack developer Ontario",
-    "AI engineer Toronto",
-    "React developer",
-    "Next.js developer",
-    "TypeScript developer",
-    "Node.js developer",
-    "Python developer",
-    "Claude API",
-    "RAG",
-    "AI agents",
-    "freelance web developer Toronto",
-  ],
-  alternates: {
-    canonical: "/",
-  },
+  // Defaults for every route. Canonical and og:url are set per page, so no page inherits the homepage's.
   openGraph: {
-    type: "profile",
-    url: SITE,
+    type: "website",
     siteName: NAME,
     title: TITLE,
     description: DESCRIPTION,
     locale: "en_CA",
-    firstName: "Pravdeep",
-    lastName: "Kullar",
     images: [OG_IMAGE],
   },
   twitter: {
@@ -115,6 +77,8 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  // TODO: replace with the Search Console HTML tag token.
+  verification: { google: "TODO" },
   category: "technology",
 };
 
@@ -129,18 +93,18 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-/** Person plus WebSite, so search engines can attach the name to the site. */
+/** Person plus WebSite, so search engines can attach the name to the site. Pages add their own nodes by @id. */
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
-      "@id": `${SITE}/#person`,
+      "@id": PERSON_ID,
       name: NAME,
       givenName: "Pravdeep",
       familyName: "Kullar",
       url: SITE,
-      email: "mailto:pravdeepkk@gmail.com",
+      email: `mailto:${EMAIL}`,
       jobTitle: "Forward Deployed Engineer",
       description: DESCRIPTION,
       image: `${SITE}${OG_IMAGE.url}`,
@@ -190,53 +154,18 @@ const jsonLd = {
         },
       ],
       knowsAbout: skillGroups.flatMap((group) => group.items),
+      // TODO: add the Google Business Profile URL once the profile is live.
       sameAs: [GITHUB, LINKEDIN],
     },
     {
       "@type": "WebSite",
-      "@id": `${SITE}/#website`,
+      "@id": WEBSITE_ID,
       url: SITE,
       name: NAME,
       alternateName: ["builtbyprav", "Built by Prav"],
       description: DESCRIPTION,
       inLanguage: "en-CA",
-      publisher: { "@id": `${SITE}/#person` },
-    },
-    {
-      "@type": "ProfilePage",
-      "@id": `${SITE}/#page`,
-      url: SITE,
-      name: TITLE,
-      description: DESCRIPTION,
-      inLanguage: "en-CA",
-      dateModified: BUILT,
-      isPartOf: { "@id": `${SITE}/#website` },
-      about: { "@id": `${SITE}/#person` },
-      mainEntity: { "@id": `${SITE}/#person` },
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: `${SITE}${OG_IMAGE.url}`,
-        width: OG_IMAGE.width,
-        height: OG_IMAGE.height,
-      },
-      hasPart: {
-        "@type": "ItemList",
-        name: "Selected work",
-        numberOfItems: projects.length,
-        itemListElement: projects.map((project, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "CreativeWork",
-            name: project.title,
-            description: project.description,
-            about: project.category,
-            keywords: project.meta.join(", "),
-            author: { "@id": `${SITE}/#person` },
-            ...(project.href ? { url: project.href } : {}),
-          },
-        })),
-      },
+      publisher: { "@id": PERSON_ID },
     },
   ],
 };
