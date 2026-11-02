@@ -13,7 +13,7 @@ export const OG_IMAGE = {
   type: "image/png",
   alt: "Pravdeep Kullar, Forward Deployed Engineer and full-stack developer, Ontario, Canada, next to a pixel art room at night",
 };
-export const EMAIL = "hello@builtbyprav.com";
+export const EMAIL = "pravdeepkk@gmail.com";
 export const GITHUB = "https://github.com/PravdeepK";
 export const LINKEDIN = "https://www.linkedin.com/in/pravdeepk/";
 export const PERSON_ID = `${SITE}/#person`;
