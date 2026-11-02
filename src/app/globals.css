@@ -455,8 +455,11 @@ a {
   }
 }
 
-/* Status bar under the room: the skills line, the prompt, the snake score. */
+/* Status bar under the room: the skills line, the prompt, the snake score.
+   It takes the room's width and never sets it, so the full skills line shown
+   with reduced motion can't stretch the room past the screen. */
 .status {
+  contain: inline-size;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
