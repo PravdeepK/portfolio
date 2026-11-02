@@ -108,7 +108,7 @@ export const projects: Project[] = [
     description:
       "Rising Sun is a WASC-accredited Montessori school in El Dorado Hills, California, teaching transitional kindergarten through middle school. The people reading the site are parents choosing a school, so the navigation is built on the four programs instead of on the school: each grade band has its own page, and the campus and gallery pages are there because parents want to see a classroom before they agree to visit one.",
     detail:
-      "Enrollment doesn't happen on the site. Applications hand off to Transparent Classroom, which the school already runs, and a tour is booked by emailing the office, because tours are Wednesday mornings only and one person keeps that calendar. Two of the three things a parent came to do finish somewhere I don't control. Building either one on the site would have meant keeping a second copy of records the school already has.",
+      "Enrolment doesn't happen on the site. Applications hand off to Transparent Classroom, which the school already runs, and a tour is booked by emailing the office, because tours are Wednesday mornings only and one person keeps that calendar. Two of the three things a parent came to do finish somewhere I don't control. Building either one on the site would have meant keeping a second copy of records the school already has.",
     noteLabel: "Trade-off",
     figure: <PixelFigure scene="enroll" />,
     caption: "Fig. 05 · What a parent came to do",
