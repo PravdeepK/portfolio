@@ -80,7 +80,7 @@ const faqs = [
   {
     question: "How much does a website cost?",
     answer:
-      "WordPress migrations and redesigns start at $2,500 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD.",
+      "WordPress migrations and redesigns start at $2,000 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD. If you need something past the website, like a CRM to keep track of customers and leads, I can build that too. It's quoted separately and costs more.",
   },
   {
     question: "How long does it take?",
@@ -388,7 +388,7 @@ export default function ServicesPage() {
           <div className="panel notch svc-price">
             <p className="svc-price__amount">
               <small>WordPress migrations and redesigns</small>
-              Starting at $2,500 CAD
+              Starting at $2,000 CAD
             </p>
             <div>
               <p>Every site is quoted after the free review, because the price depends on a few things:</p>
@@ -401,6 +401,10 @@ export default function ServicesPage() {
               <p>
                 The final price depends on the page count and features, and the quote is fixed before work starts.
                 Payment is a 50% deposit to start and the other 50% at launch.
+              </p>
+              <p>
+                Need something past the website, like a CRM to keep track of customers and leads? I can build that
+                too. It&apos;s quoted separately and costs more.
               </p>
             </div>
           </div>
