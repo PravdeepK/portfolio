@@ -70,6 +70,30 @@ const steps = [
   },
 ];
 
+/** Each kind of custom build points at a real project from the homepage. */
+const custom = [
+  {
+    label: "CRMs and internal tools",
+    body: "A CRM that keeps every customer, lead and follow-up in one place, or a quote calculator, a booking system, a job tracker or a dashboard for your staff. Underneath, these are logins, a database and the screens your team uses every day. FakeWordle is built on the same parts, with Firebase accounts and every past game saved.",
+  },
+  {
+    label: "Online stores and payments",
+    body: "At Rebelsnow I built client e-commerce sites from the requirements through to deployment: the catalog, the cart, checkout and payment. Checkout got the most testing, because a bug there costs the store a sale.",
+  },
+  {
+    label: "AI features",
+    body: "An assistant that answers questions from your own documents, or a tool that reads a photo and turns it into data. My schedule-to-calendar tool turns a photo of a class timetable into calendar events using Claude's vision model. At Nx Growth Partners I scope AI agents and RAG knowledge systems with client teams.",
+  },
+  {
+    label: "Mobile apps",
+    body: "iPhone and Android apps from one codebase with React Native and Expo. My countdown app is Expo SDK 54 with Home Screen widgets written in SwiftUI, and I build it through Xcode.",
+  },
+  {
+    label: "Integrations and automations",
+    body: "Connecting your site to tools you already use, like Google or Outlook calendars, so a booking lands in the calendar you already check. FakeWordle connects to both over OAuth. Smaller jobs count too. I have a bot on a Raspberry Pi that watches Cineplex and sends me a push notification when tickets go on sale.",
+  },
+];
+
 /** Rendered as <details> and as FAQPage JSON-LD from this one list, so the two always match. */
 const faqs = [
   {
@@ -81,6 +105,11 @@ const faqs = [
     question: "How much does a website cost?",
     answer:
       "WordPress migrations and redesigns start at $2,000 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD. If you need something past the website, like a CRM to keep track of customers and leads, I can build that too. It's quoted separately and costs more.",
+  },
+  {
+    question: "Can you build something other than a website?",
+    answer:
+      "Yes. I'm a full-stack developer, so I build the server and database side as well as the pages. That covers CRMs, booking and quote tools, online stores, AI assistants, mobile apps, and connections to tools like Google Calendar. Custom builds are quoted separately once I know what the software needs to do, and they cost more than a website.",
   },
   {
     question: "How long does it take?",
@@ -162,22 +191,34 @@ const jsonLd = {
         addressRegion: "ON",
         addressCountry: "CA",
       },
-      serviceType: servicePages.map((page) => page.name),
+      serviceType: [...servicePages.map((page) => page.name), "Custom software development"],
       sameAs: [LINKEDIN, GITHUB],
       // Named inline: the full Person node is on the homepage only.
       founder: { "@type": "Person", "@id": PERSON_ID, name: "Pravdeep Kullar", url: SITE },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Website services",
-        itemListElement: servicePages.map((page) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            "@id": `${SITE}${servicePath(page.slug)}#service`,
-            name: page.name,
-            url: `${SITE}${servicePath(page.slug)}`,
+        itemListElement: [
+          ...servicePages.map((page) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              "@id": `${SITE}${servicePath(page.slug)}#service`,
+              name: page.name,
+              url: `${SITE}${servicePath(page.slug)}`,
+            },
+          })),
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              "@id": `${SITE}${PATH}#custom-software`,
+              name: "Custom software development",
+              description: custom.map((item) => item.label).join(", "),
+              url: `${SITE}${PATH}#custom`,
+            },
           },
-        })),
+        ],
       },
     },
     {
@@ -206,7 +247,8 @@ export default function ServicesPage() {
           <p className="intro__context">
             I&apos;m Pravdeep, a freelance web developer in Ontario. I rebuild slow, high-maintenance WordPress sites as
             custom sites and redirect every old address, so Google and your customers can still find each page. If
-            your site isn&apos;t on WordPress, I redesign those too.
+            your site isn&apos;t on WordPress, I redesign those too. Past the website, I can build anything a
+            full-stack developer builds, like a CRM for your leads or an AI assistant for your staff.
           </p>
           <div className="intro__links">
             <ReviewButton />
@@ -293,9 +335,28 @@ export default function ServicesPage() {
         </ul>
       </section>
 
-      <section className="section" id="work" aria-labelledby="work-title">
+      <section className="section" id="custom" aria-labelledby="custom-title">
         <SectionHead
           index="03"
+          title="Past the website"
+          id="custom-title"
+          note="I'm a full-stack developer, so the website is only part of what I build. Anything a modern full-stack developer can do, I can do for your business. Custom builds are quoted separately and cost more than a website."
+        />
+        <div className="lift">
+          <div className="panel notch rows svc-rows">
+            {custom.map((item) => (
+              <div className="rows__item" key={item.label}>
+                <h3 className="rows__code">{item.label}</h3>
+                <p>{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="work" aria-labelledby="work-title">
+        <SectionHead
+          index="04"
           title="Recent client sites"
           id="work-title"
           note="Two sites with different jobs: one is for a contractor who wants quote requests, the other is for parents choosing a school."
@@ -365,7 +426,7 @@ export default function ServicesPage() {
 
       <section className="section" id="process" aria-labelledby="process-title">
         <SectionHead
-          index="04"
+          index="05"
           title="How it works"
           id="process-title"
           note="Usually 2 to 4 weeks from the free review to launch, depending on how quickly the content and photos come in."
@@ -383,7 +444,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="section" id="pricing" aria-labelledby="pricing-title">
-        <SectionHead index="05" title="Pricing" id="pricing-title" />
+        <SectionHead index="06" title="Pricing" id="pricing-title" />
         <div className="lift">
           <div className="panel notch svc-price">
             <p className="svc-price__amount">
@@ -412,7 +473,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="section" id="faq" aria-labelledby="faq-title">
-        <SectionHead index="06" title="Questions owners ask" id="faq-title" />
+        <SectionHead index="07" title="Questions owners ask" id="faq-title" />
         <div className="lift">
           <div className="panel notch svc-faq">
             {faqs.map((faq) => (
@@ -425,7 +486,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ReviewCta index="07" />
+      <ReviewCta index="08" />
 
       <JsonLd data={jsonLd} />
     </main>
