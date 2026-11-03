@@ -5,8 +5,8 @@ import { SITE } from "./site";
 const pages: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   { path: "/services", priority: 0.9 },
-  { path: "/services/wordpress-migration", priority: 0.9 },
   { path: "/services/website-redesign", priority: 0.8 },
+  { path: "/services/wordpress-migration", priority: 0.8 },
   { path: "/services/speed-and-seo", priority: 0.8 },
   { path: "/services/website-care", priority: 0.8 },
 ];

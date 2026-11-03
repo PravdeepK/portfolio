@@ -23,19 +23,19 @@ export type ServicePage = {
   summary: string;
 };
 
-/** The order every list uses: the WordPress move first, the supporting services after it. */
+/** The order every list uses: the rebuild first, the WordPress move next, then the supporting services. */
 export const servicePages: ServicePage[] = [
+  {
+    slug: "website-redesign",
+    name: "Website redesign",
+    summary:
+      "Rebuilding an outdated site around the one thing a visitor came to do: call you, book, or ask for a quote.",
+  },
   {
     slug: "wordpress-migration",
     name: "WordPress migration",
     summary:
       "Moving a slow, high-maintenance WordPress site onto a fast custom site with no plugins to update. Every old URL is redirected, so search traffic carries over.",
-  },
-  {
-    slug: "website-redesign",
-    name: "Website redesign",
-    summary:
-      "For sites that aren't on WordPress. A rebuild around the one thing a visitor came to do: call you, book, or ask for a quote.",
   },
   {
     slug: "speed-and-seo",

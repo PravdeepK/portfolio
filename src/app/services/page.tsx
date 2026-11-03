@@ -22,17 +22,13 @@ import {
 } from "./_components/site";
 
 const PATH = "/services";
-const TITLE = "WordPress to Modern Site Migration, Ontario | Built by Prav";
+const TITLE = "Custom Websites and Software in Ontario | Built by Prav";
 const DESCRIPTION =
-  "I move Ontario small businesses off slow WordPress sites onto fast custom sites with no plugins to update. Old URLs redirected. Redesigns too. Free site review.";
+  "Full-stack developer in Ontario. I build fast custom websites and the software behind them, like CRMs, booking tools and AI features. Free site review.";
 
 export const metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
 const problems = [
-  {
-    label: "Endless plugin updates",
-    body: "A WordPress site has a core, a theme and a handful of plugins, and each one needs updates. Most reported WordPress vulnerabilities are in plugins. An update that breaks the layout is common enough that some owners stop updating at all.",
-  },
   {
     label: "Slow on phones",
     body: "A lot of visitors to a local business site are on a phone, sometimes on mobile data. If the page takes several seconds to show anything, some of them leave before they see what you do.",
@@ -42,6 +38,10 @@ const problems = [
     body: "If a visitor has to hunt for your phone number or the quote form, some will call the next business in the search results instead. The thing you want them to do should be visible without scrolling.",
   },
   {
+    label: "Work stuck in spreadsheets",
+    body: "Leads in one inbox, quotes in a spreadsheet and follow-ups in someone's head. Past a handful of customers, things start getting missed, and nobody can see what's still open.",
+  },
+  {
     label: "Hard to edit",
     body: "Changing your hours shouldn't mean logging into a page builder nobody has the password for, or waiting a week on whoever built the site years ago.",
   },
@@ -49,16 +49,20 @@ const problems = [
     label: "Missing from local search",
     body: "Page titles that don't say what you do or where, no mention of the area you serve, and slow load times all make it harder for Google to show you to people searching nearby.",
   },
+  {
+    label: "Endless plugin updates",
+    body: "A WordPress site has a core, a theme and a handful of plugins, and each one needs updates. Most reported WordPress vulnerabilities are in plugins. An update that breaks the layout is common enough that some owners stop updating at all.",
+  },
 ];
 
 const steps = [
   {
     title: "Free review",
-    body: "You send your website address. I check its speed on mobile and desktop, use it on a phone, look at how it shows up in Google, and email back what I'd fix first.",
+    body: "You send your website address. I check its speed on mobile and desktop, use it on a phone, look at how it shows up in Google, and email back what I'd fix first. For custom software, we start with a call about what it needs to do.",
   },
   {
     title: "Plan and quote",
-    body: "We talk through what the site needs to do and which pages it needs. You get a page list and a written quote before anything is built.",
+    body: "We talk through what the site or tool needs to do. You get a page or feature list and a written quote before anything is built.",
   },
   {
     title: "Build",
@@ -66,11 +70,11 @@ const steps = [
   },
   {
     title: "Launch and care",
-    body: "I point your domain at the new site, redirect the old addresses, and check it in Google Search Console. After launch I can keep handling edits and updates.",
+    body: "I point your domain at it, redirect any old addresses, and check it in Google Search Console. After launch I can keep handling edits and updates.",
   },
 ];
 
-/** Each kind of custom build points at a real project from the homepage. */
+/** Each kind of custom software points at a real project from the homepage. */
 const custom = [
   {
     label: "CRMs and internal tools",
@@ -94,6 +98,15 @@ const custom = [
   },
 ];
 
+/** What I build: the websites first, then the custom software behind them. */
+const builds = [
+  {
+    label: "Custom websites",
+    body: "Fast sites in Next.js and TypeScript on Vercel, built around the one thing a visitor came to do: call you, book, or ask for a quote. Rosehill's new site scores 90 on mobile and 100 on desktop in PageSpeed Insights.",
+  },
+  ...custom,
+];
+
 /** Rendered as <details> and as FAQPage JSON-LD from this one list, so the two always match. */
 const faqs = [
   {
@@ -102,14 +115,14 @@ const faqs = [
       "I run your site through Google PageSpeed Insights on mobile and desktop, use it on a phone the way a customer would, check how your pages show up in Google search results, and note anything that makes it hard to call you or ask for a quote. You get a short summary by email with what I'd fix first. There's no obligation to hire me afterwards.",
   },
   {
-    question: "How much does a website cost?",
-    answer:
-      "WordPress migrations and redesigns start at $2,000 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD. If you need something past the website, like a CRM to keep track of customers and leads, I can build that too. It's quoted separately and costs more.",
-  },
-  {
     question: "Can you build something other than a website?",
     answer:
       "Yes. I'm a full-stack developer, so I build the server and database side as well as the pages. That covers CRMs, booking and quote tools, online stores, AI assistants, mobile apps, and connections to tools like Google Calendar. Custom builds are quoted separately once I know what the software needs to do, and they cost more than a website.",
+  },
+  {
+    question: "How much does a website cost?",
+    answer:
+      "WordPress migrations and redesigns start at $2,000 CAD. The final price depends on how many pages the site needs and which features it has, and the quote is fixed after the free review, before work starts. A speed and SEO tune-up is included in every migration and redesign, and on its own it starts at $750 CAD. If you need something past the website, like a CRM to keep track of customers and leads, I can build that too. It's quoted separately and costs more.",
   },
   {
     question: "How long does it take?",
@@ -191,7 +204,7 @@ const jsonLd = {
         addressRegion: "ON",
         addressCountry: "CA",
       },
-      serviceType: [...servicePages.map((page) => page.name), "Custom software development"],
+      serviceType: ["Custom software development", ...servicePages.map((page) => page.name)],
       sameAs: [LINKEDIN, GITHUB],
       // Named inline: the full Person node is on the homepage only.
       founder: { "@type": "Person", "@id": PERSON_ID, name: "Pravdeep Kullar", url: SITE },
@@ -199,6 +212,16 @@ const jsonLd = {
         "@type": "OfferCatalog",
         name: "Website services",
         itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              "@id": `${SITE}${PATH}#custom-software`,
+              name: "Custom software development",
+              description: custom.map((item) => item.label).join(", "),
+              url: `${SITE}${PATH}#build`,
+            },
+          },
           ...servicePages.map((page) => ({
             "@type": "Offer",
             itemOffered: {
@@ -208,16 +231,6 @@ const jsonLd = {
               url: `${SITE}${servicePath(page.slug)}`,
             },
           })),
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              "@id": `${SITE}${PATH}#custom-software`,
-              name: "Custom software development",
-              description: custom.map((item) => item.label).join(", "),
-              url: `${SITE}${PATH}#custom`,
-            },
-          },
         ],
       },
     },
@@ -241,20 +254,22 @@ export default function ServicesPage() {
       <section className="intro svc-hero" aria-labelledby="hero-title">
         <div>
           <h1 id="hero-title">
-            Move your business off WordPress, <em>onto a fast custom site</em>
+            Custom websites and software, <em>built for your business</em>
           </h1>
-          <p className="intro__context">No plugin updates, no security patches, and pages that load quickly on a phone.</p>
           <p className="intro__context">
-            I&apos;m Pravdeep, a freelance web developer in Ontario. I rebuild slow, high-maintenance WordPress sites as
-            custom sites and redirect every old address, so Google and your customers can still find each page. If
-            your site isn&apos;t on WordPress, I redesign those too. Past the website, I can build anything a
-            full-stack developer builds, like a CRM for your leads or an AI assistant for your staff.
+            Sites that load fast on a phone, and the tools behind them: CRMs, booking systems, online stores and AI
+            assistants.
+          </p>
+          <p className="intro__context">
+            I&apos;m Pravdeep, a full-stack developer in Ontario. I build the site your customers see and the software
+            your team uses behind it, in Next.js and TypeScript on Vercel. Stuck on a slow WordPress site? I move
+            those too, and redirect every old address so Google can still find each page.
           </p>
           <div className="intro__links">
             <ReviewButton />
-            <Link className="btn" href={servicePath("wordpress-migration")}>
-              How the move works &rarr;
-            </Link>
+            <a className="btn" href="#build">
+              See what I build &rarr;
+            </a>
           </div>
         </div>
 
@@ -264,7 +279,7 @@ export default function ServicesPage() {
               <Avatar />
               <div>
                 <p className="sheet__name">Pravdeep Kullar</p>
-                <p className="sheet__role">Freelance web developer</p>
+                <p className="sheet__role">Freelance full-stack developer</p>
               </div>
             </div>
             <dl>
@@ -278,7 +293,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <dt>First step</dt>
-                <dd>A free review of your current site</dd>
+                <dd>A free site review, or a call about what you need built</dd>
               </div>
               <div>
                 <dt>Status</dt>
@@ -296,7 +311,7 @@ export default function ServicesPage() {
           index="01"
           title="What usually goes wrong"
           id="problems-title"
-          note="Most sites I look at have one or two of these. None of them are emergencies, and they're the first things I check in a free review."
+          note="Most businesses I look at have one or two of these. None of them are emergencies, and they're the first things I ask about in a free review."
         />
         <div className="lift">
           <div className="panel notch rows svc-rows">
@@ -310,21 +325,37 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section" id="services" aria-labelledby="services-title">
+      <section className="section" id="build" aria-labelledby="build-title">
         <SectionHead
           index="02"
-          title="Services"
+          title="What I build"
+          id="build-title"
+          note="I'm a full-stack developer, so I build the site your customers see and the software behind it. Anything a modern full-stack developer can do, I can do for your business. Custom software is quoted separately and costs more than a website."
+        />
+        <div className="lift">
+          <div className="panel notch rows svc-rows">
+            {builds.map((item) => (
+              <div className="rows__item" key={item.label}>
+                <h3 className="rows__code">{item.label}</h3>
+                <p>{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="services" aria-labelledby="services-title">
+        <SectionHead
+          index="03"
+          title="Website services"
           id="services-title"
-          note="Most projects start with the move off WordPress. The other three support it, or cover sites that aren't on WordPress."
+          note="The four ways I work on websites, from a rebuild to the care after launch."
         />
         <ul className="svc-cards">
           {servicePages.map((page, index) => (
             <li className={index === 0 ? "lift svc-cards__main" : "lift"} key={page.slug}>
               <div className="panel notch svc-card">
-                <span className="label">
-                  {String(index + 1).padStart(2, "0")}
-                  {index === 0 && " · Main service"}
-                </span>
+                <span className="label">{String(index + 1).padStart(2, "0")}</span>
                 <h3>
                   <Link href={servicePath(page.slug)}>{page.name}</Link>
                 </h3>
@@ -333,25 +364,6 @@ export default function ServicesPage() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className="section" id="custom" aria-labelledby="custom-title">
-        <SectionHead
-          index="03"
-          title="Past the website"
-          id="custom-title"
-          note="I'm a full-stack developer, so the website is only part of what I build. Anything a modern full-stack developer can do, I can do for your business. Custom builds are quoted separately and cost more than a website."
-        />
-        <div className="lift">
-          <div className="panel notch rows svc-rows">
-            {custom.map((item) => (
-              <div className="rows__item" key={item.label}>
-                <h3 className="rows__code">{item.label}</h3>
-                <p>{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section className="section" id="work" aria-labelledby="work-title">
@@ -429,7 +441,7 @@ export default function ServicesPage() {
           index="05"
           title="How it works"
           id="process-title"
-          note="Usually 2 to 4 weeks from the free review to launch, depending on how quickly the content and photos come in."
+          note="Websites usually take 2 to 4 weeks from the free review to launch, depending on how quickly the content and photos come in. Custom software depends on what it needs to do, and the quote says how long."
         />
         <ol className="svc-steps">
           {steps.map((step) => (

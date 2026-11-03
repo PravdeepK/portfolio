@@ -161,7 +161,7 @@
   color: var(--warm);
 }
 
-/* The main service gets the full row, ahead of the supporting ones. */
+/* The first card gets the full row, so the other three fill the row below it. */
 .svc-cards > .svc-cards__main {
   grid-column: 1 / -1;
 }
